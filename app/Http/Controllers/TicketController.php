@@ -23,18 +23,19 @@ class TicketController extends Controller
 
     public function ticketsPendientes()
     {
-        dd('pendiente');
-        return view('helpdesk.home');
+        $tickets = Ticket::all()->where('estado', 'Pendiente');
+        return view('tickets.pendientes', compact('tickets'));
     }
     public function ticketsSolucionado()
     {
-        dd('solucionado');
-        return view('helpdesk.home');
+//        dd('solucionado');
+        $tickets = Ticket::all()->where('estado', 'Solucionado');
+        return view('tickets.solucionados', compact('tickets'));
     }
     public function ticketsCancelado()
     {
-        dd('cancelado');
-        return view('helpdesk.home');
+        $tickets = Ticket::all()->where('estado', 'Cancelado');
+        return view('tickets.cancelados', compact('tickets'));
     }
 
     /**
@@ -112,9 +113,11 @@ class TicketController extends Controller
      * @param  \App\Models\Ticket  $ticket
      * @return \Illuminate\Http\Response
      */
-    public function edit(Ticket $ticket)
+    public function edit($id)
     {
-        //
+        $ticket = Ticket::find($id);
+//        dd($ticket);
+        return view('tickets.edit', compact('ticket'));
     }
 
     /**
@@ -124,9 +127,12 @@ class TicketController extends Controller
      * @param  \App\Models\Ticket  $ticket
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Ticket $ticket)
+    public function update(Request $request, $id)
     {
-        //
+        $ticket = Ticket::find($id);
+
+        dd($ticket);
+
     }
 
     /**
@@ -137,6 +143,6 @@ class TicketController extends Controller
      */
     public function destroy(Ticket $ticket)
     {
-        //
+        dd('listo pa borrar');
     }
 }

@@ -39,4 +39,8 @@ Route::group(['middleware'=>['auth']],function(){
     Route::get('/tickets/solucionados', [TicketController::class, 'ticketsSolucionado'])->name('tickets.solucionados');
 
     Route::get('/tickets/cancelados', [TicketController::class, 'ticketsCancelado'])->name('tickets.cancelados');
+
+    Route::get('/tickets/edit/{id}', [TicketController::class,'edit'])->name('tickets.edit');
+    Route::put('/tickets/update/{ticket}', [TicketController::class,'update'])->name('tickets.update');
+    Route::delete('/tickets/destroy/{id}', [TicketController::class,'destroy'])->name('tickets.destroy');
 });
