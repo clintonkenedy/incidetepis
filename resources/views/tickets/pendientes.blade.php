@@ -9,18 +9,8 @@
 @stop
 
 @section('content')
-{{--    <div class="row justify-content-end mb-4">--}}
-{{--        <div class="col-md-3">--}}
-{{--            <div class="float-right">--}}
-{{--                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#evento">--}}
-{{--                    <span class="fa fa-calendar"></span>--}}
-{{--                    Crear Nuevo Evento--}}
-{{--                </button>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
     <div class="table-responsive">
-        <table id="teatro" class="table table-striped mt-2">
+        <table id="pendientes" class="table table-striped mt-2">
             <thead>
             <th>DNI</th>
             <th>CELULAR</th>
@@ -60,7 +50,11 @@
 @stop
 
 @section('js')
-    {{--    <script> console.log('Hi!'); </script>--}}
+    <script>
+        $(document).ready(function () {
+            $('#pendientes').DataTable();
+        });
+    </script>
 @stop
 
 

@@ -130,9 +130,13 @@ class TicketController extends Controller
     public function update(Request $request, $id)
     {
         $ticket = Ticket::find($id);
+        $ticket->persona->dni = $request->input('dni');
+        $ticket->incidencia = $request->input('incidencia');
+        $ticket->oficina->nombre_oficina = $request->input('oficina');
+        $ticket->estado = $request->input('estado');
+        $ticket->save();
 
-        dd($ticket);
-
+        return redirect()->route('tickets.pendientes');
     }
 
     /**
