@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ticket;
+use App\Models\Oficina;
 use Illuminate\Http\Request;
 
 class TicketController extends Controller
@@ -14,7 +15,24 @@ class TicketController extends Controller
      */
     public function index()
     {
-        //
+        $oficinas = Oficina::all();
+        return view('helpdesk.home', compact('oficinas'));
+    }
+
+    public function ticketsPendientes()
+    {
+        dd('pendiente');
+        return view('helpdesk.home');
+    }
+    public function ticketsSolucionado()
+    {
+        dd('solucionado');
+        return view('helpdesk.home');
+    }
+    public function ticketsCancelado()
+    {
+        dd('cancelado');
+        return view('helpdesk.home');
     }
 
     /**
@@ -33,10 +51,33 @@ class TicketController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function passOfi(Request $request)
+    {
+
+        $request->validate(
+            [
+                'oficina'=> 'required',
+                'password'=> 'required',
+            ]
+        );
+        // dd($request->all());
+        $oficina = $request->input('oficina');
+
+        $pass_oficina = Oficina::where('id', $oficina)->value('password');
+
+        // dd($pass_oficina);
+
+        if ($pass_oficina !== $request->input('password')) {
+            return 'ta mal';
+        }
+
+        return view('helpdesk.create');
+    }
     public function store(Request $request)
     {
-        //
+        return 'ads';
     }
+
 
     /**
      * Display the specified resource.

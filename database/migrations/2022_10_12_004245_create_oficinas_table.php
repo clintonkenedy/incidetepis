@@ -15,9 +15,9 @@ class CreateOficinasTable extends Migration
     {
         Schema::create('oficinas', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre',80);
-            $table->enum('estado',['Activo','Inactivo']);
-            $table->string('contrasena',50);
+            $table->string('nombre_oficina',80);
+            $table->enum('estado',['0','1'])->default('0');
+            $table->string('password',50);
             $table->timestamps();
         });
     }

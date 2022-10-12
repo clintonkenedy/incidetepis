@@ -16,7 +16,7 @@ class CreateIncidenciasTable extends Migration
         Schema::create('incidencias', function (Blueprint $table) {
             $table->id();
             $table->string('nombre',100);
-            $table->enum('estado',['Activo','Inactivo']);
+            $table->enum('estado',['0','1'])->default('0');;
             $table->timestamps();
         });
     }

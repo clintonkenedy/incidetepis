@@ -18,7 +18,7 @@ class CreateTicketsTable extends Migration
             $table->foreignId('persona_id')->constrained();
             $table->foreignId('incidencia_id')->constrained();
             $table->foreignId('oficina_id')->constrained();
-            $table->enum('estado',['Pendiente', 'Solucionado', 'Cancelado']);
+            $table->enum('estado',['Pendiente', 'Solucionado', 'Cancelado'])->default('Pendiente');
             $table->timestamps();
         });
     }

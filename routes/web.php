@@ -15,11 +15,27 @@ use App\Http\Controllers\TicketController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('helpdesk');
 });
 
-Auth::routes();
+Auth::routes(['register' => false]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('tickets',TicketController::class);
+// Route::resource('tickets',TicketController::class);
+
+Route::get('/helpdesk', [TicketController::class, 'index'])->name('helpdesk');
+
+Route::post('/nuevoticket1', [TicketController::class, 'passOfi'])->name('ticket.passOfi');
+Route::post('/nuevoticket2', [TicketController::class, 'store'])->name('ticket.store');
+
+
+Route::group(['middleware'=>['auth']],function(){
+    Route::view('dashboard','dashboard')->name('dashboard');
+
+    Route::get('/tickets/pendientes', [TicketController::class, 'ticketsPendientes'])->name('tickets.pendientes');
+
+    Route::get('/tickets/solucionados', [TicketController::class, 'ticketsSolucionado'])->name('tickets.solucionados');
+
+    Route::get('/tickets/cancelados', [TicketController::class, 'ticketsCancelado'])->name('tickets.cancelados');
+});
