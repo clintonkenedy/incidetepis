@@ -40,7 +40,7 @@
                                         <h3>Registro de Incidencia</h3>
                                     </center>
                                 </div>
-                                <form action="{{route('ticket.passOfi')}}" method="post" id="nuevoticket1">
+                                <form action="{{route('ticket.passOfi')}}" method="get" id="nuevoticket1">
                                 @csrf
                                 <div class="col-md-12 mb-3 mt-4 input-group-lg">
                                     <select type="text" id="info_oficina" class="form-control" value="" placeholder="Oficina" name="oficina">
@@ -50,7 +50,7 @@
                                     </select>
                                 </div>
                                 <div class="col-md-12 input-group-lg">
-                                    <input type="password" id="" class="form-control" value="" placeholder="Contraseña *" name="password">
+                                    <input type="password" id="passoficina" class="form-control" value="" placeholder="Contraseña *" name="password">
                                 </div>
                                 <div class="d-flex justify-content-end mt-3">
                                     <button type="submit" class="btn btn-success btn-lg">Enviar Solicitud</button>
@@ -74,6 +74,20 @@
         //     document.getElementById('info_oficina').value;
         //     const asd = await fetch('');
         // }
+        // const passofi = async ( ofi ) => {
+        //     // e.preventDefault();
+        //     const oficina = document.getElementById('info_oficina');
+        //     const passoficina = document.getElementById('passoficina');
+        //     const resp = await fetch(`/nuevoticket1/${oficina.value}`);
+        //     const {status, data} = await resp.json();
+        //     console.log(data);
+        //     //DESESTRUCTURACION DE RESPUESTA
+        //
+        //     if (data.password !== passoficina.value){
+        //         oficina.value = '';
+        //         passoficina.value = '';
+        //     }
+        //
         // document.getElementById("nuevoticket1").addEventListener("submit", function(event){
         //     event.preventDefault();
 

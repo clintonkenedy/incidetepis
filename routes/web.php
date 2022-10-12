@@ -26,8 +26,9 @@ Auth::routes(['register' => false]);
 
 Route::get('/helpdesk', [TicketController::class, 'index'])->name('helpdesk');
 
-Route::post('/nuevoticket1', [TicketController::class, 'passOfi'])->name('ticket.passOfi');
-Route::post('/nuevoticket2', [TicketController::class, 'store'])->name('ticket.store');
+Route::get('/verificacion', [TicketController::class, 'passOfi'])->name('ticket.passOfi');
+
+Route::post('/nuevoticket', [TicketController::class, 'store'])->name('ticket.store');
 
 
 Route::group(['middleware'=>['auth']],function(){

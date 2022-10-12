@@ -16,7 +16,7 @@ class CreateTicketsTable extends Migration
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
             $table->foreignId('persona_id')->constrained();
-            $table->foreignId('incidencia_id')->constrained();
+            $table->string('incidencia',100);
             $table->foreignId('oficina_id')->constrained();
             $table->enum('estado',['Pendiente', 'Solucionado', 'Cancelado'])->default('Pendiente');
             $table->timestamps();

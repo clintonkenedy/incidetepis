@@ -49,21 +49,30 @@
                                         <span style="color: red;">*</span></label>
                                         <input type="date" id="info_fecha" class="form-control" value="" readonly>
                                 </div> --}}
-                                <div class="col-md-12 mb-3 mt-4 input-group-lg">
-                                    <input type="text" id="info_inicio" class="form-control" value="" placeholder="Número de DNI">
-                                </div>
-                                <div class="col-md-12 mb-3 mt-4 input-group-lg">
-                                    <input type="text" id="info_inicio" class="form-control" value="" placeholder="Número de Celular">
-                                </div>
-                                <div class="col-md-12 mb-3 mt-4 input-group-lg">
-                                    <input type="password" id="info_inicio" class="form-control" value="" placeholder="Incidencia *"> <div class="col-md-12 input-group-lg">
-                                </div>
 
+                                <form action="{{route('ticket.store')}}" method="post" id="nuevoticket1">
+                                    @csrf
 
+                                <div class="col-md-12 mb-3 mt-4 input-group-lg">
+                                    <input type="text" id="" class="form-control" value="" placeholder="Número de DNI" name="dni">
+                                </div>
+                                <div class="col-md-12 mb-3 mt-4 input-group-lg">
+                                    <input type="text" id="" class="form-control" value="" placeholder="Número de Celular" name="celular">
+                                </div>
+                                <div class="col-md-12 mb-3 mt-4 input-group-lg">
+{{--                                    <input type="text" id="" class="form-control" value="" placeholder="Incidencia *" name="incidencia">--}}
+                                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="incidencia">
+                                        <option selected value="0">Seleccione Incidencia</option>
+                                        @foreach ($incidencias as $incidencia)
+                                            <option value="{{$incidencia->nombre}}">{{$incidencia->nombre}}</option>
+                                        @endforeach
+                                    </select>
+                                    <input type="hidden" name="oficina" value="{{$oficina}}">
                                 </div>
                                 <div class="d-flex justify-content-end mt-3">
                                     <button class="btn btn-success btn-lg">Generar Ticket</button>
                                 </div>
+                                </form>
                             </div>
                         </div>
                     </div>

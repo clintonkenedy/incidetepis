@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Incidencia;
 use App\Models\Ticket;
 use App\Models\Oficina;
+use App\Models\Persona;
 use Illuminate\Http\Request;
 
 class TicketController extends Controller
@@ -49,7 +51,7 @@ class TicketController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     public function passOfi(Request $request)
     {
@@ -61,6 +63,7 @@ class TicketController extends Controller
             ]
         );
         // dd($request->all());
+        $incidencias = Incidencia::all();
         $oficina = $request->input('oficina');
 
         $pass_oficina = Oficina::where('id', $oficina)->value('password');
@@ -71,11 +74,24 @@ class TicketController extends Controller
             return 'ta mal';
         }
 
-        return view('helpdesk.create');
+        return view('helpdesk.create', compact('oficina', 'incidencias'));
     }
     public function store(Request $request)
     {
-        return 'ads';
+//        dd($request->all());
+        $persona = new Persona;
+        $persona->dni = $request->input('dni');
+        $persona->celular = $request->input('celular');
+        $persona->save();
+
+        $ticket = new Ticket;
+        $ticket->persona_id = $persona->id;
+        $ticket->incidencia = $request->input('incidencia');
+        $ticket->oficina_id = $request->input('oficina');
+
+        $ticket->save();
+
+        return redirect()->route('helpdesk');
     }
 
 
