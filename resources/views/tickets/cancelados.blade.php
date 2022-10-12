@@ -26,7 +26,7 @@
                     <td>{{$ticket->persona->celular}}</td>
                     <td>{{$ticket->incidencia}}</td>
                     <td>{{$ticket->oficina->nombre_oficina}}</td>
-                    <td><h5><span class="badge bg-success"> {{$ticket->estado}} </span></h5></td>
+                    <td><h5><span class="badge bg-danger"> {{$ticket->estado}} </span></h5></td>
                     <td>
                         <a href="" class="btn btn-primary">Editar</a>
                         <a href="" class="btn btn-info">Detalle</a>

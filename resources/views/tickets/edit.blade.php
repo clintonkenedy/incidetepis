@@ -54,7 +54,7 @@
                                 </label>
                                 <select id="" class="form-control" name="estado">
                                     <option value="Pendiente">Pendiente</option>
-                                    <option value="Anulado">Anulado</option>
+                                    <option value="Cancelado">Cancelado</option>
                                     <option value="Solucionado">Solucionado</option>
                                 </select>
                             </div>
