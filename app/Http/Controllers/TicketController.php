@@ -145,8 +145,10 @@ class TicketController extends Controller
      * @param  \App\Models\Ticket  $ticket
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Ticket $ticket)
+    public function destroy($id)
     {
-        dd('listo pa borrar');
+        Ticket::find($id)->delete();
+
+        return back()->withInput();
     }
 }

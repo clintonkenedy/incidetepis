@@ -28,11 +28,12 @@
                     <td>{{$ticket->oficina->nombre_oficina}}</td>
                     <td><h5><span class="badge bg-success"> {{$ticket->estado}} </span></h5></td>
                     <td>
-                        <a href="" class="btn btn-primary">Editar</a>
-                        <a href="" class="btn btn-info">Detalle</a>
-    {{--                    {!! Form::open(['method'=>'DELETE','route'=>['teatro.destroy',$ticket->id],'style'=>'display:inline']) !!}--}}
-    {{--                    {!! Form::submit('Borrar',['class'=>'btn btn-danger']) !!}--}}
-    {{--                    {!! Form::close() !!}--}}
+                        <a href="{{route('tickets.edit', $ticket->id)}}" class="btn btn-primary">Editar</a>
+                        <form action="{{route('tickets.destroy', $ticket->id)}}" method="post" style="display:inline">
+                            @method('DELETE')
+                            @csrf
+                            <button class="btn btn-danger">Borrar</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach

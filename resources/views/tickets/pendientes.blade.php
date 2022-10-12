@@ -29,15 +29,11 @@
                     <td><h5><span class="badge bg-warning"> {{$ticket->estado}} </span></h5></td>
                     <td>
                         <a href="{{route('tickets.edit', $ticket->id)}}" class="btn btn-primary">Editar</a>
-{{--                        <a href="{{route('ticket')}}" class="btn btn-info">Detalle</a>--}}
                         <form action="{{route('tickets.destroy', $ticket->id)}}" method="post" style="display:inline">
                             @method('DELETE')
                             @csrf
                             <button class="btn btn-danger">Borrar</button>
                         </form>
-{{--                        {!! Form::open(['method'=>'DELETE','route'=>['teatro.destroy',$ticket->id],'style'=>'display:inline']) !!}--}}
-{{--                        {!! Form::submit('Borrar',['class'=>'btn btn-danger']) !!}--}}
-{{--                        {!! Form::close() !!}--}}
                     </td>
                 </tr>
             @endforeach
