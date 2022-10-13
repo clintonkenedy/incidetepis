@@ -328,7 +328,13 @@ return [
         // 'can' => 'Ver-Usuarios',],
         [
             'text' => 'Usuarios',
-            'route'  => 'helpdesk',
+            'route'  => 'usuarios.index',
+            'icon' => 'fas fa-fw fa-users',
+            // 'can' => 'Ver-Usuarios',
+        ],
+        [
+            'text' => 'Roles',
+            'route'  => 'roles.index',
             'icon' => 'fas fa-fw fa-users',
             // 'can' => 'Ver-Usuarios',
         ],

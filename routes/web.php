@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TicketController;
-
+use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\RolController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,7 +19,8 @@ Route::get('/', function () {
     return redirect()->route('helpdesk');
 });
 
-Auth::routes(['register' => false]);
+//Auth::routes(['register' => false]);
+Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -43,4 +45,7 @@ Route::group(['middleware'=>['auth']],function(){
     Route::get('/tickets/edit/{id}', [TicketController::class,'edit'])->name('tickets.edit');
     Route::put('/tickets/update/{ticket}', [TicketController::class,'update'])->name('tickets.update');
     Route::delete('/tickets/destroy/{id}', [TicketController::class,'destroy'])->name('tickets.destroy');
+
+    Route::resource('usuarios',UsuarioController::class);
+    Route::resource('roles',RolController::class);
 });
