@@ -32,6 +32,8 @@ Route::get('/verificacion', [TicketController::class, 'passOfi'])->name('ticket.
 
 Route::post('/nuevoticket', [TicketController::class, 'store'])->name('ticket.store');
 
+Route::get('/prueba', [TicketController::class, 'create'])->name('prueba');
+
 
 Route::group(['middleware'=>['auth']],function(){
     Route::view('dashboard','dashboard')->name('dashboard');

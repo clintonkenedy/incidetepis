@@ -45,7 +45,50 @@ class TicketController extends Controller
      */
     public function create()
     {
-        //
+        $ofi = 'ALCALDIA';
+        $cel= '987654321';
+        $dni = '12345678';
+        $inci = 'PROBLEMAS CON MI PC';
+        $estado = 'PENDIENTE';
+
+        $datds = [
+            'messaging_product' => 'whatsapp',
+            'to' => '51934077277',
+            'type' => 'template',
+            'template' => [
+                'name' => 'incidencia',
+                'language' => [
+                    'code' => 'es'
+                ],
+                'components' => array(
+                    ['type' => 'body',
+                    'parameters' => array(
+                        [
+                            'type' => 'text',
+                            'text' => 'asd',
+                        ],
+                        [
+                            'type' => 'text',
+                            'text' => 'asd',
+                        ],
+                        [
+                            'type' => 'text',
+                            'text' => 'xd',
+                        ],
+                        [
+                            'type' => 'text',
+                            'text' => 'dasd',
+                        ],
+                        [
+                            'type' => 'text',
+                            'text' => 'asd'
+                        ],
+                    )],
+                )
+            ]
+        ];
+
+        return json_encode($datds);
     }
 
     /**
@@ -92,7 +135,78 @@ class TicketController extends Controller
 
         $ticket->save();
 
-        return redirect()->route('helpdesk');
+        //ENVIO WHATSAPP
+
+        $msj = [
+            'messaging_product' => 'whatsapp',
+            'to' => '51'.$request->input('celular'),
+            'type' => 'template',
+            'template' => [
+                'name' => 'incidencia',
+                'language' => [
+                    'code' => 'es'
+                ],
+                'components' => array(
+                    ['type' => 'body',
+                    'parameters' => array(
+                        [
+                            'type' => 'text',
+                            'text' => $ticket->oficina->nombre_oficina,
+                        ],
+                        [
+                            'type' => 'text',
+                            'text' => $request->input('celular'),
+                        ],
+                        [
+                            'type' => 'text',
+                            'text' => $request->input('dni'),
+                        ],
+                        [
+                            'type' => 'text',
+                            'text' => $request->input('incidencia'),
+                        ],
+                        [
+                            'type' => 'text',
+                            'text' => 'Pendiente',
+                        ],
+                    )],
+                )
+            ]
+        ];
+
+
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://graph.facebook.com/v14.0/106655235576555/messages',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'POST',
+        CURLOPT_POSTFIELDS => json_encode($msj),
+        CURLOPT_HTTPHEADER => array(
+            'Authorization: Bearer EAAHEWrRe1mkBANUEFETniH3AnqRClKYdIIvCjqsT0kyaxbatlsZCHcap7q3UcxCuscNTmfenih0fhrkNrjFhupiKSFL0ZBVZAfZCyaShKPizQoOnI2LTEKVZADeTOKGp7QXZBp6hZBUvZCuTypGZBCZAkVMEDntdT02XZCbSk819V5risVpVUZAII5aU',
+            'Content-Type: application/json'
+        ),
+        ));
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        if ($err) {
+            return "cURL Error #:" . $err;
+        } else {
+          return(json_decode($response));
+        }
+
+        // return redirect()->route('helpdesk');
+
     }
 
 
