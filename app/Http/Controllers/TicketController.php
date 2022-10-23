@@ -189,7 +189,7 @@ class TicketController extends Controller
         CURLOPT_CUSTOMREQUEST => 'POST',
         CURLOPT_POSTFIELDS => json_encode($msj),
         CURLOPT_HTTPHEADER => array(
-            'Authorization: Bearer EAAHEWrRe1mkBANUEFETniH3AnqRClKYdIIvCjqsT0kyaxbatlsZCHcap7q3UcxCuscNTmfenih0fhrkNrjFhupiKSFL0ZBVZAfZCyaShKPizQoOnI2LTEKVZADeTOKGp7QXZBp6hZBUvZCuTypGZBCZAkVMEDntdT02XZCbSk819V5risVpVUZAII5aU',
+            env('TOKEN_API_WHATSAPP'),
             'Content-Type: application/json'
         ),
         ));
