@@ -64,7 +64,7 @@ return [
     */
 
     'logo' => '<b>HELP DESK</b>',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo_img' => 'favicon.ico',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -321,7 +321,7 @@ return [
         ['header' => 'PERFIL'],
         [
             'text' => 'Contraseña',
-            'route'  => 'helpdesk',
+            'url' => '#',
             'icon' => 'fas fa-fw fa-users',
         ],
         ['header' => 'ADMINISTRAR'],
@@ -340,7 +340,7 @@ return [
         ],
         [
             'text' => 'Oficinas',
-            'route'  => 'helpdesk',
+            'url' => '/oficinas',
             'icon' => 'fas fa-fw fa-book',
             // 'can' => 'Ver-Oficinas',
         ],
@@ -415,14 +415,29 @@ return [
                     'asset' => true,
                     'location' => '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
                 ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => '//cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => '//cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js',
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => '//cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css',
+                ],
             ],
         ],
         'Select2' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js',
                 ],
                 [

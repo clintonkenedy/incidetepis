@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Tickets Solucionados')
 
 @section('content_header')
     <center>
@@ -48,7 +48,12 @@
 @section('js')
     <script>
         $(document).ready(function () {
-            $('#solucionados').DataTable();
+            $('#solucionados').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'print'
+                ]
+            });
         });
     </script>
 @stop

@@ -14,7 +14,9 @@ class OficinaController extends Controller
      */
     public function index()
     {
-        //
+        $oficinas = Oficina::all();
+
+        return view('oficinas.index', compact('oficinas'));
     }
 
     /**
@@ -24,7 +26,7 @@ class OficinaController extends Controller
      */
     public function create()
     {
-        //
+        return view('oficinas.create');
     }
 
     /**
@@ -35,7 +37,31 @@ class OficinaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(
+            [
+                'oficina'=> 'required',
+                'pass'=> 'required',
+                'estado'=> 'required',
+            ]
+        );
+
+        $input = $request->all();
+        $nombre_ofi = $request->input('oficina');
+        $pass = $request->input('pass');
+        $estado = $request->input('estado');
+
+        // dd($pass);
+
+        $oficina = new Oficina;
+
+        $oficina->nombre_oficina = $nombre_ofi;
+        $oficina->estado = $estado;
+        $oficina->password = $pass;
+
+
+        $oficina->save();
+
+        return redirect()->route('oficinas.index');
     }
 
     /**
@@ -55,9 +81,11 @@ class OficinaController extends Controller
      * @param  \App\Models\Oficina  $oficina
      * @return \Illuminate\Http\Response
      */
-    public function edit(Oficina $oficina)
+    public function edit($id)
     {
-        //
+        $oficina = Oficina::find($id);
+        // dd($evento);
+        return view('oficinas.edit',compact('oficina'));
     }
 
     /**
@@ -67,9 +95,17 @@ class OficinaController extends Controller
      * @param  \App\Models\Oficina  $oficina
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Oficina $oficina)
+    public function update(Request $request, $id)
     {
-        //
+        $evento = Oficina::find($id);
+
+        $evento->nombre_oficina = $request->input('oficina');
+        $evento->password = $request->input('pass');
+        $evento->estado = $request->input('estado');
+        // dd($evento);
+        $evento->save();
+
+        return redirect()->route('oficinas.index');
     }
 
     /**
@@ -78,8 +114,9 @@ class OficinaController extends Controller
      * @param  \App\Models\Oficina  $oficina
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Oficina $oficina)
+    public function destroy($id)
     {
-        //
+        Oficina::find($id)->delete();
+        return redirect()->route('oficinas.index');
     }
 }

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\OficinaController;
 use App\Http\Controllers\RolController;
 /*
 |--------------------------------------------------------------------------
@@ -49,5 +50,6 @@ Route::group(['middleware'=>['auth']],function(){
     Route::delete('/tickets/destroy/{id}', [TicketController::class,'destroy'])->name('tickets.destroy');
 
     Route::resource('usuarios',UsuarioController::class);
+    Route::resource('oficinas', OficinaController::class)->names('oficinas');
     Route::resource('roles',RolController::class);
 });

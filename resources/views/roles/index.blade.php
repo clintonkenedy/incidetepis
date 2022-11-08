@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Roles')
 
 @section('content_header')
     <center>
@@ -13,7 +13,7 @@
         <table id="pendientes" class="table table-striped mt-2">
             <thead>
             <th>NOMBRE</th>
-            <th>PERMISOS</th>
+            {{-- <th>PERMISOS</th> --}}
             <th>ACCIONES</th>
             </thead>
             <tbody>
@@ -21,7 +21,7 @@
                 <tr class="">
                     <td>{{$rol->name}}</td>
                     {{--<td>{{$usuario->email}}</td>--}}
-                    <td><h5><span class="badge bg-warning"> {{$rol}} </span></h5></td>
+                    {{-- <td><h5><span class="badge bg-warning"> {{$rol}} </span></h5></td> --}}
                     <td>
                         <a href="{{route('roles.edit', $rol->id)}}" class="btn btn-primary">Editar</a>
                         <form action="{{route('roles.destroy', $rol->id)}}" method="post" style="display:inline">

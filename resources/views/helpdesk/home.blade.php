@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    {{-- SELECT2 --}}
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js" type="text/javascript"></script>
+    <style>
+        .select2 {
+            width:100%!important;
+        }
+
+    </style>
   </head>
   <body>
     <div class="container-fluid">
@@ -42,14 +52,14 @@
                                 </div>
                                 <form action="{{route('ticket.passOfi')}}" method="get" id="nuevoticket1">
                                 @csrf
-                                <div class="col-md-12 mb-3 mt-4 input-group-lg">
-                                    <select type="text" id="info_oficina" class="form-control" value="" placeholder="Oficina" name="oficina">
+                                <div class="col-md-12 mb-3 mt-4">
+                                    <select type="text" id="info_oficina" class="js-select2 form-control" placeholder="Oficina" name="oficina">
                                     @foreach ($oficinas as $oficina)
                                         <option value="{{$oficina->id}}">{{$oficina->nombre_oficina}}</option>
                                     @endforeach
                                     </select>
                                 </div>
-                                <div class="col-md-12 input-group-lg">
+                                <div class="col-md-12 input-group-md">
                                     <input type="password" id="passoficina" class="form-control" value="" placeholder="Contraseña *" name="password">
                                 </div>
                                 <div class="d-flex justify-content-end mt-3">
@@ -63,50 +73,13 @@
             </div>
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script> --}}
     <script>
-        // const passofi = async (oficina) => {
-        //     console.log('asd');
-        // }
-        // const valor =  document.getElementById('info_oficina').value;
-        // const passofi = async () => {
-        //     document.getElementById('info_oficina').value;
-        //     const asd = await fetch('');
-        // }
-        // const passofi = async ( ofi ) => {
-        //     // e.preventDefault();
-        //     const oficina = document.getElementById('info_oficina');
-        //     const passoficina = document.getElementById('passoficina');
-        //     const resp = await fetch(`/nuevoticket1/${oficina.value}`);
-        //     const {status, data} = await resp.json();
-        //     console.log(data);
-        //     //DESESTRUCTURACION DE RESPUESTA
-        //
-        //     if (data.password !== passoficina.value){
-        //         oficina.value = '';
-        //         passoficina.value = '';
-        //     }
-        //
-        // document.getElementById("nuevoticket1").addEventListener("submit", function(event){
-        //     event.preventDefault();
-
-        //     let pass1 = document.getElementById("pass1");
-        //     let pass2 = document.getElementById("pass2");
-
-        //     pass1.value = pass1.value.trim();
-
-        //     if (pass1.value !== pass2.value) {
-        //         pass1.classList.add('is-invalid');
-        //         pass2.classList.add('is-invalid');
-        //         console.error('No coincide');
-        //         return
-        //     }
-        //     console.log(document.getElementById("pass1").value);
-        //     console.log(document.getElementById("pass2").value);
-
-        //     document.getElementById("nuevoticket1").submit();
-        // });
+        $(document).ready(function() {
+            $('.js-select2').select2({
+                language: "es",
+            });
+        });
     </script>
 </body>
 
