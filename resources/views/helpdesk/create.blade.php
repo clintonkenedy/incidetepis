@@ -54,19 +54,28 @@
                                     @csrf
 
                                 <div class="col-md-12 mb-3 mt-4 input-group-lg">
-                                    <input type="text" id="" class="form-control" value="" placeholder="Número de DNI" name="dni">
+                                    <input type="text" id="" class="form-control" value="{{old('dni')}}" placeholder="Número de DNI" name="dni">
+                                    @error('dni')
+                                    <small style="color:red" >{{$message}}</small>
+                                    @enderror
                                 </div>
                                 <div class="col-md-12 mb-3 mt-4 input-group-lg">
-                                    <input type="text" id="" class="form-control" value="" placeholder="Número de Celular" name="celular">
+                                    <input type="text" id="" class="form-control" value="{{old('celular')}}" placeholder="Número de Celular" name="celular">
+                                    @error('celular')
+                                    <small style="color:red" >{{$message}}</small>
+                                    @enderror
                                 </div>
                                 <div class="col-md-12 mb-3 mt-4 input-group-lg">
 {{--                                    <input type="text" id="" class="form-control" value="" placeholder="Incidencia *" name="incidencia">--}}
                                     <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="incidencia">
-                                        <option selected value="0">Seleccione Incidencia</option>
+                                        <option selected value="">Seleccione Incidencia</option>
                                         @foreach ($incidencias as $incidencia)
                                             <option value="{{$incidencia->nombre}}">{{$incidencia->nombre}}</option>
                                         @endforeach
                                     </select>
+                                    @error('incidencia')
+                                    <small style="color:red" >{{$message}}</small>
+                                    @enderror
                                     <input type="hidden" name="oficina" value="{{$oficina}}">
                                 </div>
                                 <div class="d-flex justify-content-end mt-3">

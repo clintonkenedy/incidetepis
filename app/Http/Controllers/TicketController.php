@@ -115,7 +115,7 @@ class TicketController extends Controller
         // dd($pass_oficina);
 
         if ($pass_oficina !== $request->input('password')) {
-            return 'ta mal';
+            return redirect()->route('helpdesk')->with('ercontra','Contraseña Incorrecta');
         }
 
         return view('helpdesk.create', compact('oficina', 'incidencias'));
@@ -123,6 +123,11 @@ class TicketController extends Controller
     public function store(Request $request)
     {
 //        dd($request->all());
+        $request->validate([
+           'dni'=>['required'],
+           'celular'=>['required'],
+            'incidencia'=>['required'],
+        ]);
         $persona = new Persona;
         $persona->dni = $request->input('dni');
         $persona->celular = $request->input('celular');
