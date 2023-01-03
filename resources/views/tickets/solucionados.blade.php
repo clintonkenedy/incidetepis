@@ -12,6 +12,7 @@
     <div class="table-responsive">
         <table id="solucionados" class="table table-striped mt-2">
             <thead>
+            <th>ID</th>
             <th>DNI</th>
             <th>CELULAR</th>
             <th>INCIDENCIA</th>
@@ -22,6 +23,7 @@
             <tbody>
             @foreach ($tickets as $ticket)
                 <tr class="">
+                    <td>{{$ticket->id}}</td>
                     <td>{{$ticket->persona->dni}}</td>
                     <td>{{$ticket->persona->celular}}</td>
                     <td>{{$ticket->incidencia}}</td>
@@ -52,7 +54,8 @@
                 dom: 'Bfrtip',
                 buttons: [
                     'print'
-                ]
+                ],
+                "order": false,
             });
         });
     </script>
