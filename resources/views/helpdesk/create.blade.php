@@ -54,6 +54,7 @@
                                     @csrf
 
                                 <div class="col-md-12 mb-3 mt-4 input-group-lg">
+<<<<<<< HEAD
                                     <input type="text" id="dni" class="form-control" value="" placeholder="Número de DNI" name="dni" onkeyup="validarDNI()">
                                     <div id="messageDNI" class="invalid-feedback" hidden>
                                         DNI Incorrecto
@@ -75,15 +76,38 @@
 {{--                                    <input type="text" id="" class="form-control" value="" placeholder="Incidencia *" name="incidencia">--}}
                                     <select id="s_incidencia" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="incidencia" onchange="f_otros()">
                                         <option selected value>Seleccione Incidencia</option>
+=======
+                                    <input type="text" id="" class="form-control" value="{{old('dni')}}" placeholder="Número de DNI" name="dni">
+                                    @error('dni')
+                                    <small style="color:red" >{{$message}}</small>
+                                    @enderror
+                                </div>
+                                <div class="col-md-12 mb-3 mt-4 input-group-lg">
+                                    <input type="text" id="" class="form-control" value="{{old('celular')}}" placeholder="Número de Celular" name="celular">
+                                    @error('celular')
+                                    <small style="color:red" >{{$message}}</small>
+                                    @enderror
+                                </div>
+                                <div class="col-md-12 mb-3 mt-4 input-group-lg">
+{{--                                    <input type="text" id="" class="form-control" value="" placeholder="Incidencia *" name="incidencia">--}}
+                                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="incidencia">
+                                        <option selected value="">Seleccione Incidencia</option>
+>>>>>>> 23b1e77232c6151e85a434817253f893ce7fb249
                                         @foreach ($incidencias as $incidencia)
                                             <option value="{{$incidencia->nombre}}">{{$incidencia->nombre}}</option>
                                         @endforeach
                                     </select>
+<<<<<<< HEAD
 
                                     <div id="errorIncidencia" style="color: #dc3545">
 
                                     </div>
                                     <input type="text" id="otros" class="form-control" value="" placeholder="Decriba su problema" name="otros" hidden>
+=======
+                                    @error('incidencia')
+                                    <small style="color:red" >{{$message}}</small>
+                                    @enderror
+>>>>>>> 23b1e77232c6151e85a434817253f893ce7fb249
                                     <input type="hidden" name="oficina" value="{{$oficina}}">
                                 </div>
                                 <div class="d-flex justify-content-end mt-3">

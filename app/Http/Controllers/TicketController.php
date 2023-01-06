@@ -128,16 +128,33 @@ class TicketController extends Controller
 
 
         if ($pass_oficina !== $request->input('password')) {
+<<<<<<< HEAD
             return json_encode([
                 'status' => 'error',
                 'msj' => 'Contraseña Incorrecta',
             ]);
+=======
+            return redirect()->route('helpdesk')->with('ercontra','Contraseña Incorrecta');
+>>>>>>> 23b1e77232c6151e85a434817253f893ce7fb249
         }
         // return redirect()->route('helpdesk.create', compact('oficina', 'incidencias'));
         return view('helpdesk.create', compact('oficina', 'incidencias'));
     }
     public function store(Request $request)
     {
+<<<<<<< HEAD
+=======
+//        dd($request->all());
+        $request->validate([
+           'dni'=>['required'],
+           'celular'=>['required'],
+            'incidencia'=>['required'],
+        ]);
+        $persona = new Persona;
+        $persona->dni = $request->input('dni');
+        $persona->celular = $request->input('celular');
+        $persona->save();
+>>>>>>> 23b1e77232c6151e85a434817253f893ce7fb249
 
         // dd($request->all());
         // return json_encode([

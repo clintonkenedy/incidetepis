@@ -3,7 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+<<<<<<< HEAD
     <title>MPP - Mesa de Ayuda</title>
+=======
+    <title>Help Desk</title>
+>>>>>>> 23b1e77232c6151e85a434817253f893ce7fb249
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     {{-- SELECT2 --}}
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
@@ -17,6 +21,8 @@
     </style>
   </head>
   <body>
+
+
     <div class="container-fluid">
         <div class="row bg bg-dark text-white">
             <a class="navbar-brand m-2">Muni Puno</a>
@@ -44,6 +50,12 @@
                     <div class="card text-dark">
                         {{-- <h4 id="" class="card-header">EVENTO </h4> --}}
                         <div class="card-body">
+                            @if(session('info'))
+                                <div class="alert alert-success">
+                                    <strong>{{session('info')}}</strong>
+                                </div>
+
+                            @endif
                             <div class="row m-3">
                                 <div class="col-12">
                                     <center>
@@ -61,9 +73,15 @@
                                 </div>
                                 <div class="col-md-12 input-group-md">
                                     <input type="password" id="passoficina" class="form-control" value="" placeholder="Contraseña *" name="password">
+<<<<<<< HEAD
                                     <div id="passFeedback" class="invalid-feedback" hidden>
                                         Contraseña Incorrecta, comuniquese con el encargado de la Oficina.
                                     </div>
+=======
+                                    @if(session('ercontra'))
+                                            <small style="color: red">{{session('ercontra')}}</small>
+                                    @endif
+>>>>>>> 23b1e77232c6151e85a434817253f893ce7fb249
                                 </div>
                                 <div class="d-flex justify-content-end mt-3">
                                     <button type="submit" class="btn btn-success btn-lg">Enviar Solicitud</button>
@@ -79,10 +97,12 @@
     {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script> --}}
     <script>
         $(document).ready(function() {
-            $('.js-select2').select2({
-                language: "es",
+            // show the alert
+            $(".alert").first().hide().slideDown(500).delay(3000).slideUp(500, function () {
+                $(this).remove();
             });
         });
+<<<<<<< HEAD
         try {
             document.getElementById("nuevoticket1").addEventListener("submit", function(event){
                 event.preventDefault();
@@ -125,6 +145,13 @@
             }
         }
 
+=======
+            $(document).ready(function() {
+                $('.js-select2').select2({
+                    language: "es",
+                });
+            });
+>>>>>>> 23b1e77232c6151e85a434817253f893ce7fb249
     </script>
 </body>
 
