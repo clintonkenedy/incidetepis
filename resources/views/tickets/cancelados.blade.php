@@ -12,6 +12,8 @@
     <div class="table-responsive">
         <table id="cancelados" class="table table-striped mt-2">
             <thead>
+
+            <th>ID</th>
             <th>DNI</th>
             <th>CELULAR</th>
             <th>INCIDENCIA</th>
@@ -22,6 +24,7 @@
             <tbody>
             @foreach ($tickets as $ticket)
                 <tr class="">
+                    <td>{{$ticket->id}}</td>
                     <td>{{$ticket->persona->dni}}</td>
                     <td>{{$ticket->persona->celular}}</td>
                     <td>{{$ticket->incidencia}}</td>
@@ -48,7 +51,9 @@
 @section('js')
     <script>
         $(document).ready(function () {
-            $('#cancelados').DataTable();
+            $('#cancelados').DataTable({
+                'order': false,
+            });
         });
     </script>
 @stop

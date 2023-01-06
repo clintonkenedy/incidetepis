@@ -1,17 +1,18 @@
 @extends('adminlte::page')
 
-@section('title', 'Tickets Pendientes')
+@section('title', 'Tickets Cancelados')
 
 @section('content_header')
     <center>
-        <h1>TICKETS PENDIENTES</h1>
+        <h1>TICKETS EN CAMINO</h1>
     </center>
 @stop
 
 @section('content')
     <div class="table-responsive">
-        <table id="pendientes" class="table table-striped mt-2">
+        <table id="caminos" class="table table-striped mt-2">
             <thead>
+
             <th>ID</th>
             <th>DNI</th>
             <th>CELULAR</th>
@@ -28,7 +29,7 @@
                     <td>{{$ticket->persona->celular}}</td>
                     <td>{{$ticket->incidencia}}</td>
                     <td>{{$ticket->oficina->nombre_oficina}}</td>
-                    <td><h5><span class="badge bg-warning"> {{$ticket->estado}} </span></h5></td>
+                    <td><h5><span class="badge bg-light"> {{$ticket->estado}} </span></h5></td>
                     <td>
                         <a href="{{route('tickets.edit', $ticket->id)}}" class="btn btn-primary">Editar</a>
                         <form action="{{route('tickets.destroy', $ticket->id)}}" method="post" style="display:inline">
@@ -50,8 +51,8 @@
 @section('js')
     <script>
         $(document).ready(function () {
-            $('#pendientes').DataTable({
-                "order": false
+            $('#caminos').DataTable({
+                'order': false,
             });
         });
     </script>

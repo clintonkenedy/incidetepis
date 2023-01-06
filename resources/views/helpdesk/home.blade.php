@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Help Desk</title>
+    <title>MPP - Mesa de Ayuda</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     {{-- SELECT2 --}}
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
@@ -69,9 +69,9 @@
                                 </div>
                                 <div class="col-md-12 input-group-md">
                                     <input type="password" id="passoficina" class="form-control" value="" placeholder="Contraseña *" name="password">
-                                    @if(session('ercontra'))
-                                            <small style="color: red">{{session('ercontra')}}</small>
-                                    @endif
+                                    <div id="passFeedback" class="invalid-feedback" hidden>
+                                        Contraseña Incorrecta, comuniquese con el encargado de la Oficina.
+                                    </div>
                                 </div>
                                 <div class="d-flex justify-content-end mt-3">
                                     <button type="submit" class="btn btn-success btn-lg">Enviar Solicitud</button>
@@ -92,11 +92,48 @@
                 $(this).remove();
             });
         });
-            $(document).ready(function() {
-                $('.js-select2').select2({
-                    language: "es",
+        try {
+            document.getElementById("nuevoticket1").addEventListener("submit", function(event){
+                event.preventDefault();
+                // console.log(total_tickets());
+                const resp = total_tickets().then( val =>{
+                    if(!val){
+                        document.getElementById("nuevoticket1").submit();
+                    }
+                    else{
+                        document.getElementById('passoficina').classList.add('is-invalid');
+                        document.getElementById('passFeedback').hidden = false;
+                        console.log("contraseña incorrecta");
+                        return;
+                    }
                 });
+
             });
+        } catch (error) {
+            console.log(error);
+        }
+
+        // console.log(oficina);
+        const total_tickets = async () => {
+            const token = document.getElementsByName('_token')[0].value;
+            const oficina = document.getElementById('info_oficina').value;
+            const password = document.getElementById('passoficina').value;
+            // verificacion?_token=keMDARbh8LXN0BRiXkoysdEyBP4GSi0j1iYOYwDj&oficina=2&password=123
+            try {
+                const resp = await fetch('/verificacion?_token='+token+'&oficina='+oficina+'&password='+password);
+
+                if (!resp.ok) {
+                    console.log("Server conexion error");
+                }
+                const data = await resp.json();
+                // document.getElementById("a_total_tickets").innerText = "Tickets: "+ data.total_tickets;
+                // console.log(data);
+                return data;
+            } catch (error) {
+
+            }
+        }
+
     </script>
 </body>
 

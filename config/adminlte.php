@@ -318,12 +318,12 @@ return [
         //     'label'       => 4,
         //     'label_color' => 'success',
         // ],
-        ['header' => 'PERFIL'],
-        [
-            'text' => 'Contraseña',
-            'url' => '#',
-            'icon' => 'fas fa-fw fa-users',
-        ],
+        // ['header' => 'PERFIL'],
+        // [
+        //     'text' => 'Contraseña',
+        //     'url' => '#',
+        //     'icon' => 'fas fa-fw fa-users',
+        // ],
         ['header' => 'ADMINISTRAR'],
         // 'can' => 'Ver-Usuarios',],
         [
@@ -349,6 +349,11 @@ return [
             'text'       => 'Pendiente',
             'icon_color' => 'yellow',
             'url'        => '/tickets/pendientes',
+        ],
+        [
+            'text'       => 'En camino',
+            'icon_color' => 'blue',
+            'url'        => '/tickets/caminos',
         ],
         [
             'text'       => 'Solucionado',
