@@ -15,7 +15,7 @@ class CreateDispositivosTable extends Migration
     {
         Schema::create('dispositivos', function (Blueprint $table) {
             $table->id();
-            $table->string('codpatrominal')->nullable();
+            $table->string('codpatrominal')->nullable(); //codpatri
             $table->string('descripcion',100)->nullable();
             $table->string('modelo',20)->nullable();
             $table->string('marca',15)->nullable();
