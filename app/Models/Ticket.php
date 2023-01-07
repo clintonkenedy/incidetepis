@@ -19,4 +19,8 @@ class Ticket extends Model
     public function oficina(){
         return $this->belongsTo(Oficina::class);
     }
+
+    public function historials(){
+        return $this->hasMany(Historial::class);
+    }
 }

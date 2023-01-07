@@ -5,6 +5,7 @@ use App\Http\Controllers\TicketController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\OficinaController;
 use App\Http\Controllers\RolController;
+use App\Http\Controllers\DispositivosController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,6 +29,7 @@ Auth::routes();
 // Route::resource('tickets',TicketController::class);
 
 Route::get('/helpdesk', [TicketController::class, 'index'])->name('helpdesk');
+Route::get('/pc', [DispositivosController::class, 'index'])->name('pc');
 
 Route::get('/verificacion', [TicketController::class, 'passOfi'])->name('ticket.passOfi');
 
