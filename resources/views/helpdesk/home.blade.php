@@ -58,17 +58,17 @@
                                         <h3>Registro de Incidencia</h3>
                                     </center>
                                 </div>
-                                <form action="{{route('ticket.passOfi')}}" method="get" id="nuevoticket1">
+                                <form action="" method="get" id="nuevoticket1">
                                 @csrf
                                 <div class="col-md-12 mb-3 mt-4">
-                                    <select type="text" id="info_oficina" class="js-select2 form-control" placeholder="Oficina" name="oficina">
+                                    <select type="text" id="info_oficina" name="oficinaid" class="js-select2 form-control" placeholder="Oficina" name="oficina">
                                     @foreach ($oficinas as $oficina)
                                         <option value="{{$oficina->id}}">{{$oficina->nombre_oficina}}</option>
                                     @endforeach
                                     </select>
                                 </div>
                                 <div class="col-md-12 input-group-md">
-                                    <input type="password" id="passoficina" class="form-control" value="" placeholder="Contraseña *" name="password">
+                                    <input type="password" id="passoficina" class="form-control" value="" placeholder="Contraseña *" name="password" required>
                                     <div id="passFeedback" class="invalid-feedback" hidden>
                                         Contraseña Incorrecta, comuniquese con el encargado de la Oficina.
                                     </div>
@@ -97,9 +97,21 @@
                 event.preventDefault();
                 // console.log(total_tickets());
                 const resp = total_tickets().then( val =>{
+                    let ofic = document.getElementById('info_oficina');
+
+                    console.log(ofic.value);
+
                     if(!val){
                         document.getElementById("nuevoticket1").submit();
+                        let oficinae1 = ofic.value;
+                        localStorage.setItem('oficina', JSON.stringify(parseInt(oficinae1)));
+                        console.log(oficinae1);
+
+                        console.log(val);
+                        window.location.href = "/dispositivos/"+ofic.value;
+
                     }
+
                     else{
                         document.getElementById('passoficina').classList.add('is-invalid');
                         document.getElementById('passFeedback').hidden = false;
