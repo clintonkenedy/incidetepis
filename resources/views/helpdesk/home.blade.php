@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>MPP - Mesa de Ayuda</title>
+    <title>REPORTAR INDICENCIA</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     {{-- SELECT2 --}}
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
@@ -21,22 +21,22 @@
 
     <div class="container-fluid">
         <div class="row bg bg-dark text-white">
-            <a class="navbar-brand m-2">Muni Puno</a>
+            <a class="navbar-brand m-2">UNA PUNO</a>
         </div>
         <div class="row text-white" style="background-color: #1e6584">
             <div class="col-md-12 pt-5">
                 <center>
-                    <h1> <b>Municipalidad Provincial de Puno</b></h1>
+                    <h1> <b>Universidad Nacional del Altiplano</b></h1>
                     <hr/>
-                    <h5>Oficina de Tecnología Informática</h5>
-                    <p>Teléfono: 051 368591 - Anexo: 4010</p>
+                    <h5>Ingenieria de Sistemas</h5>
+                    <p>Teléfono: 051 368591</p>
                 </center>
             </div>
         </div>
         <div class="row" style="background-color: #43baca48">
             <div class="col-md-12 m-3">
                 <center>
-                    <h3 class=""> <i class="bi bi-phone-fill"></i>   Mesa de Ayuda</h3>
+                    <h3 class=""> <i class="bi bi-phone-fill"></i>   Registrar Incidencia</h3>
                 </center>
             </div>
         </div>
