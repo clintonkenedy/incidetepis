@@ -54,7 +54,7 @@
                                         <div class="card-body">
                                             <center>
                                                 <h5 class="card-title">{{$d->id}}</h5>
-                                                <a href="#" class="btn btn-primary">incidencia</a>
+                                                <a value="{{$d->id}}" onclick="enviar2(this,{{$d->id}})" href="#" class="btn btn-primary">incidencia</a>
 
                                             </center>
 
@@ -77,6 +77,14 @@
 </div>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
+    function enviar2(e,i){
+        console.log("hola2");
+        console.log(i);
+        let pc = i;
+        localStorage.setItem('pc', JSON.stringify(pc));
+        window.location.href = "/incidencia";
+
+    }
     const f_otros = () => {
         if (document.getElementById('s_incidencia').value == "OTROS") {
             document.getElementById('otros').hidden = false;

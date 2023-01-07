@@ -48,9 +48,12 @@ class DispositivosController extends Controller
      * @param  \App\Models\Dispositivos  $dispositivos
      * @return \Illuminate\Http\Response
      */
-    public function show(Dispositivos $dispositivos)
+    public function show($id)
     {
         //
+
+        $dispositivos= Dispositivos::where('oficina_id',$id)->get();
+        return view('helpdesk.pc',compact('dispositivos'));
     }
 
     /**
