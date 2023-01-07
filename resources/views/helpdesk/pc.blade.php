@@ -38,7 +38,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="intro">
-                                    <h1>LABORATORIO 7</h1>
+                                    <h1>LABORATORIO {{$oficina}}</h1>
                                 </div>
                             </div>
                         </div>

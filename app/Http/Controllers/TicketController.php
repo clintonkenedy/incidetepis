@@ -235,199 +235,21 @@ class TicketController extends Controller
         $ticket->incidencia = $request->input('incidencia');
         $ticket->oficina->nombre_oficina = $request->input('oficina');
         $ticket->estado = $request->input('estado');
+//        dd($ticket->dispositivo->id);
         $ticket->save();
-
-
-        //ENVIO WHATSAPP
-        if ($request->input('estado') == 'Solucionado') {
-            $msj = [
-                'messaging_product' => 'whatsapp',
-                'to' => '51'.$request->input('celular'),
-                'type' => 'template',
-                'template' => [
-                    'name' => 'incidencia',
-                    'language' => [
-                        'code' => 'es'
-                    ],
-                    'components' => array(
-                        ['type' => 'body',
-                        'parameters' => array(
-                            [
-                                'type' => 'text',
-                                'text' => $ticket->oficina->nombre_oficina,
-                            ],
-                            [
-                                'type' => 'text',
-                                'text' => $request->input('celular'),
-                            ],
-                            [
-                                'type' => 'text',
-                                'text' => $request->input('dni'),
-                            ],
-                            [
-                                'type' => 'text',
-                                'text' => $request->input('incidencia'),
-                            ],
-                            [
-                                'type' => 'text',
-                                'text' => $request->input('estado').' ✅',
-                            ],
-                        )],
-                    )
-                ]
-            ];
-
+        if($request->input('estado')=='Solucionado'){
+            $ticket->dispositivo->estado='Funcional';
         }
-        if ($request->input('estado') == 'En camino') {
-            $msj = [
-                'messaging_product' => 'whatsapp',
-                'to' => '51'.$request->input('celular'),
-                'type' => 'template',
-                'template' => [
-                    'name' => 'incidencia',
-                    'language' => [
-                        'code' => 'es'
-                    ],
-                    'components' => array(
-                        ['type' => 'body',
-                        'parameters' => array(
-                            [
-                                'type' => 'text',
-                                'text' => $ticket->oficina->nombre_oficina,
-                            ],
-                            [
-                                'type' => 'text',
-                                'text' => $request->input('celular'),
-                            ],
-                            [
-                                'type' => 'text',
-                                'text' => $request->input('dni'),
-                            ],
-                            [
-                                'type' => 'text',
-                                'text' => $request->input('incidencia'),
-                            ],
-                            [
-                                'type' => 'text',
-                                'text' => $request->input('estado').' 🏃🏻',
-                            ],
-                        )],
-                    )
-                ]
-            ];
-
+        else if($request->input('estado')=='Cancelado'){
+            $ticket->dispositivo->estado='Suspendido';
         }
-        if ($request->input('estado') == 'Pendiente') {
-            $msj = [
-                'messaging_product' => 'whatsapp',
-                'to' => '51'.$request->input('celular'),
-                'type' => 'template',
-                'template' => [
-                    'name' => 'incidencia',
-                    'language' => [
-                        'code' => 'es'
-                    ],
-                    'components' => array(
-                        ['type' => 'body',
-                        'parameters' => array(
-                            [
-                                'type' => 'text',
-                                'text' => $ticket->oficina->nombre_oficina,
-                            ],
-                            [
-                                'type' => 'text',
-                                'text' => $request->input('celular'),
-                            ],
-                            [
-                                'type' => 'text',
-                                'text' => $request->input('dni'),
-                            ],
-                            [
-                                'type' => 'text',
-                                'text' => $request->input('incidencia'),
-                            ],
-                            [
-                                'type' => 'text',
-                                'text' => $request->input('estado').' 🟡',
-                            ],
-                        )],
-                    )
-                ]
-            ];
-
-        }
-        if ($request->input('estado') == 'Cancelado') {
-            $msj = [
-                'messaging_product' => 'whatsapp',
-                'to' => '51'.$request->input('celular'),
-                'type' => 'template',
-                'template' => [
-                    'name' => 'incidencia',
-                    'language' => [
-                        'code' => 'es'
-                    ],
-                    'components' => array(
-                        ['type' => 'body',
-                        'parameters' => array(
-                            [
-                                'type' => 'text',
-                                'text' => $ticket->oficina->nombre_oficina,
-                            ],
-                            [
-                                'type' => 'text',
-                                'text' => $request->input('celular'),
-                            ],
-                            [
-                                'type' => 'text',
-                                'text' => $request->input('dni'),
-                            ],
-                            [
-                                'type' => 'text',
-                                'text' => $request->input('incidencia'),
-                            ],
-                            [
-                                'type' => 'text',
-                                'text' => $request->input('estado').' ⛔️',
-                            ],
-                        )],
-                    )
-                ]
-            ];
-
-        }
+        $ticket->dispositivo->save();
 
 
-
-        $curl = curl_init();
-
-        curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://graph.facebook.com/v14.0/106655235576555/messages',
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => '',
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 0,
-        CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => 'POST',
-        CURLOPT_POSTFIELDS => json_encode($msj),
-        CURLOPT_HTTPHEADER => array(
-            env('TOKEN_API_WHATSAPP'),
-            'Content-Type: application/json'
-        ),
-        ));
-
-        $response = curl_exec($curl);
-        $err = curl_error($curl);
-
-        curl_close($curl);
-
-        if ($err) {
-            return "cURL Error #:" . $err;
-        } else {
-            return redirect()->route('tickets.pendientes');
+        return redirect()->route('tickets.pendientes');
             // return redirect()->route('helpdesk');
         //   return(json_decode($response));
-        }
+
     }
 
     /**

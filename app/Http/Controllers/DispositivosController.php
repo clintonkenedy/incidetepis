@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dispositivos;
+use App\Models\Oficina;
 use Illuminate\Http\Request;
 
 class DispositivosController extends Controller
@@ -39,7 +40,7 @@ class DispositivosController extends Controller
     public function store(Request $request)
     {
         //
-        
+
     }
 
     /**
@@ -51,9 +52,9 @@ class DispositivosController extends Controller
     public function show($id)
     {
         //
-
+        $oficina = $id;
         $dispositivos= Dispositivos::where('oficina_id',$id)->get();
-        return view('helpdesk.pc',compact('dispositivos'));
+        return view('helpdesk.pc',compact('dispositivos','oficina'));
     }
 
     /**
