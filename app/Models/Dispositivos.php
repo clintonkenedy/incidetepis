@@ -8,7 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Dispositivos extends Model
 {
     use HasFactory;
+
+    public function tickets(){
+        return $this->hasMany(Ticket::class);
+    }
     public function oficina(){
-        return $this->belongsTo(Oficina::class);
+        return $this->hasMany(Oficina::class);
     }
 }
+

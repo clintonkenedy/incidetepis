@@ -344,6 +344,12 @@ return [
             'icon' => 'fas fa-fw fa-book',
             // 'can' => 'Ver-Oficinas',
         ],
+        [
+            'text' => 'Dispositivos',
+            'url' => '/dispositivos',
+            'icon' => 'fas fa-fw fa-book',
+            // 'can' => 'Ver-Oficinas',
+        ],
         ['header' => 'TICKETS'],
         [
             'text'       => 'Pendiente',

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dispositivos;
-use App\Models\Oficina;
 use Illuminate\Http\Request;
 
 class DispositivosController extends Controller
@@ -17,7 +16,7 @@ class DispositivosController extends Controller
     {
         //
         $dispositivos= Dispositivos::all();
-        return view('helpdesk.pc',compact('dispositivos'));
+        return view('dispositivos.index',compact('dispositivos'));
     }
 
     /**
@@ -28,6 +27,7 @@ class DispositivosController extends Controller
     public function create()
     {
         //
+        return view('dispoditivos.create');
     }
 
     /**
@@ -39,6 +39,7 @@ class DispositivosController extends Controller
     public function store(Request $request)
     {
         //
+        
     }
 
     /**
@@ -61,9 +62,12 @@ class DispositivosController extends Controller
      * @param  \App\Models\Dispositivos  $dispositivos
      * @return \Illuminate\Http\Response
      */
-    public function edit(Dispositivos $dispositivos)
+    public function edit($id)
     {
         //
+        $dispositivos = Dispositivos::find($id);
+        // dd($evento);
+        return view('dispositivos.edit',compact('dispositivos'));
     }
 
     /**
@@ -73,9 +77,26 @@ class DispositivosController extends Controller
      * @param  \App\Models\Dispositivos  $dispositivos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Dispositivos $dispositivos)
+    public function update(Request $request ,$id)
     {
         //
+        $evento = Dispositivos::find($id);
+
+        $evento->codpatrominal = $request->input('Codpatrimonial');
+        $evento->descripcion = $request->input('Descripción');
+        $evento->modelo = $request->input('Modelo');
+        $evento->marca = $request->input('Marca');
+        $evento->serie = $request->input('Serie');
+        $evento->color = $request->input('Color');
+        $evento->estado = $request->input('Estado');
+        $evento->condicion = $request->input('Condicion');
+        $evento->posicion = $request->input('Posicion');
+        $evento->observacion = $request->input('Observacion');
+        $evento->oficina_id = $request->input('Ambiente');
+        // dd($evento);
+        $evento->save();
+
+        return redirect()->route('dispositivos.index');
     }
 
     /**
