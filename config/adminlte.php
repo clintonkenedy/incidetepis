@@ -351,23 +351,23 @@ return [
             // 'can' => 'Ver-Oficinas',
         ],
         ['header' => 'ESTADOS'],
-        [
-            'text'       => 'Pendiente',
-            'icon_color' => 'yellow',
-            'url'        => '/tickets/pendientes',
-        ],
-        [
-            'text'       => 'En camino',
-            'icon_color' => 'blue',
-            'url'        => '/tickets/caminos',
-        ],
+        //[
+        //    'text'       => 'En camino',
+         //   'icon_color' => 'blue',
+        //    'url'        => '/tickets/caminos',
+        //],
         [
             'text'       => 'Solucionado',
             'icon_color' => 'green',
             'url'        => '/tickets/solucionados',
         ],
         [
-            'text'       => 'Cancelado',
+            'text'       => 'Incidencia',
+            'icon_color' => 'yellow',
+            'url'        => '/tickets/pendientes',
+        ],
+        [
+            'text'       => 'No Funcional',
             'icon_color' => 'red',
             'url'        => '/tickets/cancelados',
         ],
