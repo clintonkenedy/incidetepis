@@ -39,6 +39,31 @@ class DispositivosController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate(
+            [
+                'codpatri'=> 'required',
+                'descripcion'=> 'required',
+                'estado'=> 'required',
+            ]
+        );
+
+        $input = $request->all();
+        $code_pat = $request->input('codpatri');
+        $descrip = $request->input('descripcion');
+        $estado = $request->input('estado');
+
+        // dd($pass);
+
+        $dispositivo = new Dispositivos;
+
+        $dispositivo->codpatrominal = $code_pat;
+        $dispositivo->descripcion = $descrip;
+        $dispositivo->estado = $estado;
+
+
+        $dispositivo->save();
+
+        return redirect()->route('dispositivos.index');
         
     }
 
@@ -90,7 +115,7 @@ class DispositivosController extends Controller
         $evento->posicion = $request->input('Posicion');
         $evento->observacion = $request->input('Observacion');
         $evento->oficina_id = $request->input('Ambiente');
-        // dd($evento);
+        // dd($evento); 
         $evento->save();
 
         return redirect()->route('dispositivos.index');
