@@ -12,13 +12,13 @@
 <body>
 <div class="container-fluid">
     <div class="row bg bg-dark text-white">
-        <a class="navbar-brand m-2">Muni Puno</a>
+        <a class="navbar-brand m-2">UNA PUNO</a>
     </div>
 
     <div class="row" style="background-color: #43baca48">
         <div class="col-md-12 m-3">
             <center>
-                <h3 class=""> <i class="bi bi-phone-fill"></i>   Mesa de Ayuda</h3>
+                <h3 class=""> <i class="bi bi-phone-fill"></i>  Registrar Incidencia</h3>
             </center>
         </div>
     </div>
@@ -38,7 +38,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="intro">
-                                    <h1>LABORATORIO #</h1>
+                                    <h1>LABORATORIO 7</h1>
                                 </div>
                             </div>
                         </div>
