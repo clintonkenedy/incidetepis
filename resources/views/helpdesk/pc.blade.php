@@ -48,7 +48,16 @@
                                 <div class="col-lg-2 col-md-6" >
                                     <div class="card">
                                         <div class="card-header">
-                                            <h5>PC <span class="badge bg-secondary">{{$d->estado}}</span></h5>
+                                            <h5>PC
+                                                @if($d->estado=='Funcional')
+                                                <span class="badge bg-success">{{$d->estado}}</span>
+                                                @elseif($d->estado=='Incidencia')
+                                                    <span class="badge bg-warning ">{{$d->estado}}</span>
+                                                @elseif($d->estado=='Suspendido')
+                                                    <span class="badge bg-danger ">{{$d->estado}}</span>
+                                                @endif
+
+                                            </h5>
 
                                         </div>
                                         <div class="card-body">
