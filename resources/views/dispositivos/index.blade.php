@@ -9,18 +9,11 @@
 @stop
 
 @section('content')
-<<<<<<< HEAD
-    {{-- <a href=" {{ route('dispositvos.create') }} " class="btn btn-success mb-3">NUEVA OFICINA</a> --}}
-    <table id="dispositivos" class="table table-striped mt-2">
-        <thead>
-            <th>Cod PATRIMONIAL</th>    
-=======
     {{-- <a href=" {{ route('oficinas.create') }} " class="btn btn-success mb-3">NUEVA OFICINA</a> --}}
     <div class="table-responsive">
         <table id="dispositivos" class="table table-striped mt-2">
             <thead>
             <th>Cod PATRIMONIAL</th>
->>>>>>> e8c96dccfabe104a9ed7d4167fd931443fc4c30e
             <th>DESCRIPCIÓN</th>
             <th>MODELO</th>
             <th>MARCA</th>
