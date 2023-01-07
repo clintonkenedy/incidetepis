@@ -4,7 +4,7 @@
 
 @section('content_header')
     <center>
-        <h1>TICKETS SOLUCIONADOS</h1>
+        <h1>Dispositivos Solucionados</h1>
     </center>
 @stop
 
