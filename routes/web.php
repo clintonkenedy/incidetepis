@@ -55,5 +55,6 @@ Route::group(['middleware'=>['auth']],function(){
 
     Route::resource('usuarios',UsuarioController::class);
     Route::resource('oficinas', OficinaController::class)->names('oficinas');
+    Route::resource('dispositivos', DispositivosController::class)->names('dispositivos');
     Route::resource('roles',RolController::class);
 });

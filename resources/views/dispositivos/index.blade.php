@@ -10,7 +10,7 @@
 
 @section('content')
     {{-- <a href=" {{ route('oficinas.create') }} " class="btn btn-success mb-3">NUEVA OFICINA</a> --}}
-    <table id="oficinas" class="table table-striped mt-2">
+    <table id="dispositivos" class="table table-striped mt-2">
         <thead>
             <th>Cod PATRIMONIAL</th>
             <th>DESCRIPCIÓN</th>
@@ -36,16 +36,16 @@
                 <td> {{$dispositivo->color}} </td>
                 @if ($dispositivo->estado==="Incidencia")
                     <td><span class="badge bg-success" > Incidencia </span></td>
-                @elseif ($oficina->estado==="Funcional")
+                @elseif ($dispositivo->estado==="Funcional")
                     <td><span class="badge bg-warning" > Funcional</span></td>
                 @else
                     <td><span class="badge bg-warning" > Suspendido </span></td>
                 @endif
                 @if ($dispositivo->condicion==="Nuevo")
                     <td><span class="badge bg-success" > Nuevo </span></td>
-                @elseif ($oficina->estado==="Regular")
+                @elseif ($dispositivo->estado==="Regular")
                     <td><span class="badge bg-warning" > Regular </span></td>
-                @elseif ($oficina->estado==="Malo")
+                @elseif ($dispositivo->estado==="Malo")
                     <td><span class="badge bg-warning" > Malo </span></td>
                 @else
                     <td><span class="badge bg-warning" > Chatarra</span></td>
@@ -55,7 +55,7 @@
                 <td> {{$dispositivo->oficina_id}} </td>
                 
                 <td>
-                    <a href=" {{ route('dispositivos.edit', $oficina) }} " class="btn btn-primary">Editar</a>
+                    <a href=" {{ route('dispositivos.edit', $dispositivo) }} " class="btn btn-primary">Editar</a>
                 </td>
             </tr>
             @endforeach
@@ -70,7 +70,8 @@
 @section('js')
     <script>
         $(document).ready(function () {
-            $('#oficinas').DataTable();
+            $('#dispositivos').DataTable();
         });
+
     </script>
 @stop

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dispositivos;
-use App\Models\Oficina;
 use Illuminate\Http\Request;
 
 class DispositivosController extends Controller
@@ -17,7 +16,7 @@ class DispositivosController extends Controller
     {
         //
         $dispositivos= Dispositivos::all();
-        return view('helpdesk.pc',compact('dispositivos'));
+        return view('dispositivos.index',compact('dispositivos'));
     }
 
     /**
@@ -28,6 +27,7 @@ class DispositivosController extends Controller
     public function create()
     {
         //
+        return view('dispoditivos.create');
     }
 
     /**
@@ -39,6 +39,7 @@ class DispositivosController extends Controller
     public function store(Request $request)
     {
         //
+        
     }
 
     /**
@@ -61,6 +62,7 @@ class DispositivosController extends Controller
     public function edit(Dispositivos $dispositivos)
     {
         //
+        
     }
 
     /**
