@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>MPP - Mesa de Ayuda</title>
+    <title>REPORTAR INDICENCIA</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     {{-- SELECT2 --}}
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
@@ -21,22 +21,22 @@
 
     <div class="container-fluid">
         <div class="row bg bg-dark text-white">
-            <a class="navbar-brand m-2">Muni Puno</a>
+            <a class="navbar-brand m-2">UNA PUNO</a>
         </div>
         <div class="row text-white" style="background-color: #1e6584">
             <div class="col-md-12 pt-5">
                 <center>
-                    <h1> <b>Municipalidad Provincial de Puno</b></h1>
+                    <h1> <b>Universidad Nacional del Altiplano</b></h1>
                     <hr/>
-                    <h5>Oficina de Tecnología Informática</h5>
-                    <p>Teléfono: 051 368591 - Anexo: 4010</p>
+                    <h5>Ingenieria de Sistemas</h5>
+                    <p>Teléfono: 051 368591</p>
                 </center>
             </div>
         </div>
         <div class="row" style="background-color: #43baca48">
             <div class="col-md-12 m-3">
                 <center>
-                    <h3 class=""> <i class="bi bi-phone-fill"></i>   Mesa de Ayuda</h3>
+                    <h3 class=""> <i class="bi bi-phone-fill"></i>   Registrar Incidencia</h3>
                 </center>
             </div>
         </div>
@@ -58,17 +58,17 @@
                                         <h3>Registro de Incidencia</h3>
                                     </center>
                                 </div>
-                                <form action="{{route('ticket.passOfi')}}" method="get" id="nuevoticket1">
+                                <form action="" method="get" id="nuevoticket1">
                                 @csrf
                                 <div class="col-md-12 mb-3 mt-4">
-                                    <select type="text" id="info_oficina" class="js-select2 form-control" placeholder="Oficina" name="oficina">
+                                    <select type="text" id="info_oficina" name="oficinaid" class="js-select2 form-control" placeholder="Oficina" name="oficina">
                                     @foreach ($oficinas as $oficina)
                                         <option value="{{$oficina->id}}">{{$oficina->nombre_oficina}}</option>
                                     @endforeach
                                     </select>
                                 </div>
                                 <div class="col-md-12 input-group-md">
-                                    <input type="password" id="passoficina" class="form-control" value="" placeholder="Contraseña *" name="password">
+                                    <input type="password" id="passoficina" class="form-control" value="" placeholder="Contraseña *" name="password" required>
                                     <div id="passFeedback" class="invalid-feedback" hidden>
                                         Contraseña Incorrecta, comuniquese con el encargado de la Oficina.
                                     </div>
@@ -97,9 +97,21 @@
                 event.preventDefault();
                 // console.log(total_tickets());
                 const resp = total_tickets().then( val =>{
+                    let ofic = document.getElementById('info_oficina');
+
+                    console.log(ofic.value);
+
                     if(!val){
                         document.getElementById("nuevoticket1").submit();
+                        let oficinae1 = ofic.value;
+                        localStorage.setItem('oficina', JSON.stringify(parseInt(oficinae1)));
+                        console.log(oficinae1);
+
+                        console.log(val);
+                        window.location.href = "/dispositivos/"+ofic.value;
+
                     }
+
                     else{
                         document.getElementById('passoficina').classList.add('is-invalid');
                         document.getElementById('passFeedback').hidden = false;

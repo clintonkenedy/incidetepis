@@ -12,13 +12,13 @@
 <body>
 <div class="container-fluid">
     <div class="row bg bg-dark text-white">
-        <a class="navbar-brand m-2">Muni Puno</a>
+        <a class="navbar-brand m-2">UNA PUNO</a>
     </div>
 
     <div class="row" style="background-color: #43baca48">
         <div class="col-md-12 m-3">
             <center>
-                <h3 class=""> <i class="bi bi-phone-fill"></i>   Mesa de Ayuda</h3>
+                <h3 class=""> <i class="bi bi-phone-fill"></i>  Registrar Incidencia</h3>
             </center>
         </div>
     </div>
@@ -38,7 +38,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="intro">
-                                    <h1>LABORATORIO #</h1>
+                                    <h1>LABORATORIO 7</h1>
                                 </div>
                             </div>
                         </div>
@@ -48,13 +48,22 @@
                                 <div class="col-lg-2 col-md-6" >
                                     <div class="card">
                                         <div class="card-header">
-                                            <h5>PC <span class="badge bg-secondary">{{$d->estado}}</span></h5>
+                                            <h5>PC
+                                                @if($d->estado=='Funcional')
+                                                <span class="badge bg-success">{{$d->estado}}</span>
+                                                @elseif($d->estado=='Incidencia')
+                                                    <span class="badge bg-warning ">{{$d->estado}}</span>
+                                                @elseif($d->estado=='Suspendido')
+                                                    <span class="badge bg-danger ">{{$d->estado}}</span>
+                                                @endif
+
+                                            </h5>
 
                                         </div>
                                         <div class="card-body">
                                             <center>
                                                 <h5 class="card-title">{{$d->id}}</h5>
-                                                <a href="#" class="btn btn-primary">incidencia</a>
+                                                <a value="{{$d->id}}" onclick="enviar2(this,{{$d->id}})" href="#" class="btn btn-primary">incidencia</a>
 
                                             </center>
 
@@ -77,6 +86,14 @@
 </div>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
+    function enviar2(e,i){
+        console.log("hola2");
+        console.log(i);
+        let pc = i;
+        localStorage.setItem('pc', JSON.stringify(pc));
+        window.location.href = "/incidencia";
+
+    }
     const f_otros = () => {
         if (document.getElementById('s_incidencia').value == "OTROS") {
             document.getElementById('otros').hidden = false;

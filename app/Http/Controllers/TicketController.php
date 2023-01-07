@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dispositivos;
 use App\Models\Incidencia;
 use App\Models\Ticket;
 use App\Models\Oficina;
@@ -23,6 +24,12 @@ class TicketController extends Controller
     {
         $oficinas = Oficina::all()->where('estado', '0');
         return view('helpdesk.home', compact('oficinas'));
+    }
+
+    public function incidencia()
+    {
+        $incidencias = Incidencia::all();
+        return view('helpdesk.create', compact('incidencias'));
     }
 
     public function ticketsPendientes()
@@ -166,88 +173,20 @@ class TicketController extends Controller
                 $ticket->incidencia = $request->input('incidencia');
             }
             $ticket->oficina_id = $request->input('oficina');
-
+            $ticket->dispositivo_id = $request->input('pc');
+//            dd($request->all());
             $ticket->save();
+            $dispositivo = Dispositivos::find($request->input('pc'));
+            $dispositivo->estado = 'Incidencia';
+            $dispositivo->save();
 
-            //ENVIO WHATSAPP
-
-            $msj = [
-                'messaging_product' => 'whatsapp',
-                'to' => '51'.$request->input('celular'),
-                'type' => 'template',
-                'template' => [
-                    'name' => 'incidencia',
-                    'language' => [
-                        'code' => 'es'
-                    ],
-                    'components' => array(
-                        ['type' => 'body',
-                        'parameters' => array(
-                            [
-                                'type' => 'text',
-                                'text' => $ticket->oficina->nombre_oficina,
-                            ],
-                            [
-                                'type' => 'text',
-                                'text' => $request->input('celular'),
-                            ],
-                            [
-                                'type' => 'text',
-                                'text' => $request->input('dni'),
-                            ],
-                            [
-                                'type' => 'text',
-                                'text' => $request->input('incidencia'),
-                            ],
-                            [
-                                'type' => 'text',
-                                'text' => 'Pendiente 🟡',
-                            ],
-                        )],
-                    )
-                ]
-            ];
-
-
-
-            $curl = curl_init();
-
-            curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://graph.facebook.com/v14.0/106655235576555/messages',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => json_encode($msj),
-            CURLOPT_HTTPHEADER => array(
-                env('TOKEN_API_WHATSAPP'),
-                'Content-Type: application/json'
-            ),
-            ));
-
-            $response = curl_exec($curl);
-            $err = curl_error($curl);
-
-            curl_close($curl);
-
-            if ($err) {
-                return "cURL Error #:" . $err;
-            } else {
-                return json_encode([
-                    'status' => 'saved',
-                    'message' => $ticket->id,
-                ]);
-            //   return(json_decode($response));
-            }
         }
+        return redirect()->route('helpdesk');
 
-        return response()->json([
-            'status' => 'error',
-            'message' => $validator->errors()
-        ]);
+//        return response()->json([
+//            'status' => 'error',
+//            'message' => $validator->errors()
+//        ]);
         // if ($request->input('incidencia') == '0') {
         //     return;
         // }
