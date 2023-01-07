@@ -43,16 +43,31 @@
                 @endif
                 @if ($dispositivo->condicion==="Nuevo")
                     <td><span class="badge bg-success" > Nuevo </span></td>
-                @elseif ($dispositivo->estado==="Regular")
+                @elseif ($dispositivo->condicion==="Regular")
                     <td><span class="badge bg-warning" > Regular </span></td>
-                @elseif ($dispositivo->estado==="Malo")
+                @elseif ($dispositivo->condicion==="Malo")
                     <td><span class="badge bg-warning" > Malo </span></td>
                 @else
                     <td><span class="badge bg-warning" > Chatarra</span></td>
                 @endif
                 <td> {{$dispositivo->posicion}} </td>
                 <td> {{$dispositivo->observacion}} </td>
-                <td> {{$dispositivo->oficina_id}} </td>
+
+                @if ($dispositivo->oficina_id==="1")
+                    <td><span class="badge bg-success" > LABORATORIO1 </span></td>
+                @elseif ($dispositivo->condicion==="2")
+                    <td><span class="badge bg-warning" > LABORATORIO2 </span></td>
+                @elseif ($dispositivo->condicion==="3")
+                    <td><span class="badge bg-warning" > LABORATORIO3 </span></td>
+                @elseif ($dispositivo->condicion==="4")
+                    <td><span class="badge bg-warning" > LABORATORIO4 </span></td>
+                @elseif ($dispositivo->condicion==="5")
+                    <td><span class="badge bg-warning" > LABORATORIO5 </span></td>
+                @elseif ($dispositivo->condicion==="6")
+                    <td><span class="badge bg-warning" > LABORATORIO6 </span></td>
+                @else
+                    <td><span class="badge bg-warning" > LABORATORIO7</span></td>
+                @endif
                 
                 <td>
                     <a href=" {{ route('dispositivos.edit', $dispositivo) }} " class="btn btn-primary">Editar</a>
