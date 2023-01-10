@@ -37,8 +37,91 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-12">
+                                <div class="row">
+                                    <div class="col-md-10 mb-3 mt-4">
+                                        <select type="text" id="info_oficina" name="oficinaid" class="js-select2 form-control" placeholder="Oficina" name="oficina">
+                                            @foreach ($oficinas as $oficina)
+                                                <option value="{{$oficina->id}}" {{($oficina->id==$of)?"selected":""}}>{{$oficina->nombre_oficina}}</option>
+                                            @endforeach
+                                        </select>
+
+                                    </div>
+                                    <div class=" col-md-2 mt-4">
+                                        <a href="{{route('helpdesk')}}" class="btn btn-secondary" >Cancelar</a>
+                                    </div>
+                                </div>
+
+
                                 <div class="intro">
-                                    <h1>LABORATORIO {{$oficina}}</h1>
+    {{--
+                                        <p>{{ Request::route()->getName() }}</p>
+    --}}
+                                    {{--<p>{{ Request::path() }}
+                                    </p>--}}
+                                    <h1>LABORATORIO {{$of}}</h1>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Button trigger modal -->
+
+
+                        <!-- Modal -->
+                        <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <form action="{{route('ticket.store')}}" method="post" id="nuevoticket1">
+                                        @csrf
+                                    <div class="modal-body">
+
+
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-floating mb-3">
+                                                    <input type="text" readonly  class="form-control" name="oficina" id="oficina"  >
+                                                    <label for="oficina">Laboratorio:</label>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-floating mb-3">
+                                                    <input type="text" readonly class="form-control" name="pc" id="pc" >
+                                                    <label for="pc">Computadora:</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                            <div class="col-md-12 mb-3 mt-4 ">
+                                                {{--                                    <input type="text" id="" class="form-control" value="" placeholder="Incidencia *" name="incidencia">--}}
+                                                <select id="s_incidencia" class="form-select mb-3" aria-label="example" name="incidencia" required onchange="f_otros()">
+                                                    <option id="limpi" selected value>Seleccione Incidencia</option>
+                                                    @foreach ($incidencias as $incidencia)
+                                                        <option value="{{$incidencia->nombre}}">{{$incidencia->nombre}}</option>
+                                                    @endforeach
+                                                </select>
+
+                                                <div id="errorIncidencia" style="color: #dc3545">
+
+                                                </div>
+                                                <input type="text" id="otros" class="form-control" value="" placeholder="Decriba su problema" name="otros" hidden>
+                                                {{--                                    <input type="hidden" name="oficina" value="{{$oficina}}">--}}
+                                            </div>
+                                           {{-- <div class="d-flex justify-content-end mt-3">
+                                                <button class="btn btn-success ">Generar Ticket</button>
+                                            </div>--}}
+
+
+                                    </div>
+                                    <div class="modal-footer">
+
+                                        <button type="button" onclick="limpiar()" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                        <button class="btn btn-success ">Generar Ticket</button>
+                                    </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -63,7 +146,15 @@
                                         <div class="card-body">
                                             <center>
                                                 <h5 class="card-title">{{$d->id}}</h5>
-                                                <a value="{{$d->id}}" onclick="enviar2(this,{{$d->id}})" href="#" class="btn btn-primary">incidencia</a>
+                                                @if($d->estado!='Funcional')
+                                                    <p>Incidencia Reportada</p>
+                                                @else
+                                                    <button type="button" onclick="enviar2(this,{{$d->id}})" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                        Incidencia
+                                                    </button>
+                                                @endif
+
+{{--                                                <a value="{{$d->id}}" onclick="enviar2(this,{{$d->id}})" href="#" data-bs-toggle="modal" ata-bs-target="#exampleModal" class="btn btn-primary">incidencia</a>--}}
 
                                             </center>
 
@@ -85,13 +176,44 @@
     </div>
 </div>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
 <script>
+    let oficina = {{$of}};
+    let pc;
+    document.getElementById('oficina').value = oficina;
+    function limpiar(){
+        console.log("limpiar");
+
+        window.location.href ={{$of}};
+    }
+    let inci = document.querySelector('#inci');
+    // Obtener una referencia al elemento select
+    const select = document.querySelector('#info_oficina');
+    select.addEventListener("change", (e) => {
+        console.log("ga");
+        let option = e.currentTarget.selectedOptions[0];
+        console.log(option.value);
+        window.location.href = "/dispositivos/"+option.value;
+        console.log("xd");
+
+    });
+    // Obtener una referencia a la opción que quieres modificar
+
+
+    //window.location.href = "/dispositivos/2";
     function enviar2(e,i){
         console.log("hola2");
         console.log(i);
-        let pc = i;
-        localStorage.setItem('pc', JSON.stringify(pc));
-        window.location.href = "/incidencia";
+        pc = i;
+        document.getElementById('pc').value = pc;
+
+        console.log(inci);
+        //ss$('#exampleModal').modal({ show:true });
+        //
+        //const myModalAlternative = new bootstrap.Modal('#myModal', options)
+        //localStorage.setItem('pc', JSON.stringify(pc));
+        //window.location.href = "/incidencia";
 
     }
     const f_otros = () => {
@@ -106,157 +228,11 @@
 
 
 
-    function validarDNI() {
-        let isValid = false;
-        const tmaximo = 8;
-        const input = document.forms['nuevoticket1']['dni'];
-        const message = document.getElementById('messageDNI');
-        input.willValidate = false;
-        const pattern = new RegExp('^[0-9 ]*$');
 
 
-        input.classList.add('is-invalid');
-        if(input.value) {
-            if(pattern.test(input.value)){
-                isValid = true;
-                input.classList.remove('is-invalid')
-            }
-        }
-        input.addEventListener('input',function(){
-
-            if (this.value.length > tmaximo){
-                this.value = this.value.slice(0,tmaximo);
-            }
-            if (this.value.length == tmaximo){
-                // input.classList.replace('is-invalid','is-valid' )
-                input.classList.add('is-valid');
-            }else{
-                input.classList.remove('is-valid');
-            }
-        })
-        //Pinta input
-        if(!isValid) {
-            // input.classList.add('was-validated')
-            input.classList.replace('is-valid','is-invalid' )
-            message.hidden = false;
-        } else {
-            // input.style.borderColor = 'green';
-            // input.classList.replace('is-invalid','is-valid' )
-            message.hidden = true;
-        }
-
-        return isValid;
-    }
-    function validarCel() {
-        let isValid = false;
-        const tmaximo = 9;
-        const input = document.forms['nuevoticket1']['celular'];
-        const message = document.getElementById('messageCelular');
-        input.willValidate = false;
-        const pattern = new RegExp('^[0-9 ]*$');
-
-
-        input.classList.add('is-invalid');
-        if(input.value) {
-            if(pattern.test(input.value)){
-                isValid = true;
-                input.classList.remove('is-invalid')
-            }
-        }
-        input.addEventListener('input',function(){
-
-            if (this.value.length > tmaximo){
-                this.value = this.value.slice(0,tmaximo);
-            }
-            if (this.value.length == tmaximo){
-                // input.classList.replace('is-invalid','is-valid' )
-                input.classList.add('is-valid');
-            }else{
-                input.classList.remove('is-valid');
-            }
-        })
-        //Pinta input
-        if(!isValid) {
-            // input.classList.add('was-validated')
-            input.classList.replace('is-valid','is-invalid' )
-            message.hidden = false;
-        } else {
-            // input.style.borderColor = 'green';
-            // input.classList.replace('is-invalid','is-valid' )
-            message.hidden = true;
-        }
-
-        return isValid;
-    }
 
     //
-    try {
-        document.getElementById("nuevoticket1").addEventListener("submit", function(event){
-            event.preventDefault();
-            // console.log(total_tickets());
-            (async () => {
-                const rawResponse = await fetch('/nuevoticket', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': '{{csrf_token()}}'
-                    },
-                    body: JSON.stringify({
-                        dni: document.forms['nuevoticket1']['dni'].value,
-                        celular: document.forms['nuevoticket1']['celular'].value,
-                        incidencia: document.forms['nuevoticket1']['incidencia'].value,
-                        oficina: document.forms['nuevoticket1']['oficina'].value,
-                        otros: document.forms['nuevoticket1']['otros'].value,
-                    })
-                });
 
-                const content = await rawResponse.json();
-                if (content.message?.dni) {
-                    document.getElementById('errorDNI').hidden = false;
-                    document.getElementById('errorDNI').innerHTML = content.message.dni;
-                }else{
-                    document.getElementById('errorDNI').hidden = true;
-                }
-
-                if (content.message?.celular) {
-                    document.getElementById('errorCelular').hidden = false;
-                    document.getElementById('errorCelular').innerHTML = content.message.celular;
-                }else{
-                    document.getElementById('errorCelular').hidden = true;
-                }
-
-                if (content.message?.incidencia) {
-                    document.getElementById('errorIncidencia').hidden = false;
-                    document.getElementById('errorIncidencia').innerHTML = content.message.incidencia;
-                }else{
-                    document.getElementById('errorIncidencia').hidden = true;
-                }
-                console.log(content.message);
-                if (content.status == 'saved') {
-                    // Swal.fire(
-                    //     'Ticket Registrado N°: '+ content.message,
-                    //     'Su ticket fue registrado con existo, se procederá a atender su peticion según el orden de ingreso.',
-                    //     'success'
-                    // )
-                    Swal.fire({
-                        title: 'Ticket Registrado N°: '+ content.message,
-                        icon: 'success',
-                        text: 'Su ticket fue registrado con éxito, se procederá a atender su peticion según el orden de ingreso.',
-                        showDenyButton: false,
-                        showCancelButton: false,
-                        confirmButtonText: 'Ok',
-                    }).then((result) => {
-                        /* Read more about isConfirmed, isDenied below */
-                        if (result.isConfirmed) {
-                            location.replace('/');
-                        }
-                    })
-                }
-            })();
-        });
-    } catch (error) {
-        console.log(error);
-    }
 
 </script>
 </body>

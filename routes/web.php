@@ -38,7 +38,9 @@ Route::post('/nuevoticket', [TicketController::class, 'store'])->name('ticket.st
 
 Route::get('/prueba', [TicketController::class, 'create'])->name('prueba');
 
-Route::resource('dispositivos',DispositivosController::class);
+/*Route::resource('dispositivos',DispositivosController::class);*/
+Route::resource('dispositivos', DispositivosController::class)->names('dispositivos');
+
 
 Route::group(['middleware'=>['auth']],function(){
     Route::view('dashboard','dashboard')->name('dashboard');
@@ -57,6 +59,5 @@ Route::group(['middleware'=>['auth']],function(){
 
     Route::resource('usuarios',UsuarioController::class);
     Route::resource('oficinas', OficinaController::class)->names('oficinas');
-    Route::resource('dispositivos', DispositivosController::class)->names('dispositivos');
     Route::resource('roles',RolController::class);
 });

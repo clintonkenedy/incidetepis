@@ -56,12 +56,19 @@
                                 <div class="col-12">
                                     <center>
                                         <h3>Registro de Incidencia</h3>
+                                        <h3>Login</h3>
                                     </center>
                                 </div>
                                 <form action="" method="get" id="nuevoticket1">
                                 @csrf
+                                    <div class="col-md-12 input-group-md">
+                                        <label for="exampleFormControlInput1" class="form-label">Usuario:</label>
+
+                                        <input type="text" id="" class="form-control" value="clinton"  name="" disabled>
+
+                                    </div>
                                 <div class="col-md-12 mb-3 mt-4">
-                                    <select type="text" id="info_oficina" name="oficinaid" class="js-select2 form-control" placeholder="Oficina" name="oficina">
+                                    <select hidden type="text" id="info_oficina" name="oficinaid" class="js-select2 form-control" placeholder="Oficina" name="oficina">
                                     @foreach ($oficinas as $oficina)
                                         <option value="{{$oficina->id}}">{{$oficina->nombre_oficina}}</option>
                                     @endforeach
@@ -74,7 +81,7 @@
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-end mt-3">
-                                    <button type="submit" class="btn btn-success btn-lg">Enviar Solicitud</button>
+                                    <button type="submit" class="btn btn-success btn-lg">Inciar Sesion</button>
                                 </div>
                                 </form>
                             </div>
@@ -92,6 +99,10 @@
                 $(this).remove();
             });
         });
+
+
+
+
         try {
             document.getElementById("nuevoticket1").addEventListener("submit", function(event){
                 event.preventDefault();

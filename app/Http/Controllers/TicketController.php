@@ -151,22 +151,23 @@ class TicketController extends Controller
         //     'status' => 'ok',
         //     'msj' => 'holi',
         // ]);
+        //dd($request->all());
         $reglas =[
-                'dni'=> 'required|numeric|digits:8',
-                'celular'=> 'required|numeric|digits:9',
+
                 'incidencia'=> 'required',
             ];
         $validator = Validator::make($request->all(), $reglas);
         if ($validator->passes()) {
-            $persona = new Persona;
+            /*$persona = new Persona;
             $persona->dni = $request->input('dni');
             $persona->celular = $request->input('celular');
-            $persona->save();
+            $persona->save();*/
 
 
 
             $ticket = new Ticket;
-            $ticket->persona_id = $persona->id;
+            //$ticket->persona_id = $persona->id;
+            $ticket->persona_id = 1;
             if (strlen($request->input('otros'))>2) {
                 $ticket->incidencia = $request->input('otros');
             }else {
@@ -179,9 +180,10 @@ class TicketController extends Controller
             $dispositivo = Dispositivos::find($request->input('pc'));
             $dispositivo->estado = 'Incidencia';
             $dispositivo->save();
+            //dd($dispositivo);
 
         }
-        return redirect()->route('helpdesk');
+        return redirect()->route('dispositivos.show',$request->input('oficina'));
 
 //        return response()->json([
 //            'status' => 'error',

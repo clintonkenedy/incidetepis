@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dispositivos;
+use App\Models\Incidencia;
 use App\Models\Oficina;
 use Illuminate\Http\Request;
 
@@ -52,9 +53,14 @@ class DispositivosController extends Controller
     public function show($id)
     {
         //
-        $oficina = $id;
+
+        $oficinas = Oficina::all();
+        $of = $id;
         $dispositivos= Dispositivos::where('oficina_id',$id)->get();
-        return view('helpdesk.pc',compact('dispositivos','oficina'));
+        $incidencias = Incidencia::all();
+        //dd($oficinas[0]->dispositivos);
+        //dd($of);
+        return view('helpdesk.pc',compact('dispositivos','of', 'oficinas','incidencias'));
     }
 
     /**

@@ -78,7 +78,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-3 mt-4 input-group-lg">
-                                    <input type="text" id="celular" class="form-control" value="" placeholder="Número de Celular" name="celular" onkeyup="validarCel()">
+                                    <input type="text" id="celular" class="form-control" value="" placeholder="Número de Celular" name="celular" required onkeyup="validarCel()">
                                     <div id="messageCelular" class="invalid-feedback" hidden>
                                         Celular Incorrecto
                                     </div>
@@ -88,7 +88,7 @@
                                 </div>
                                 <div class="col-md-12 mb-3 mt-4 input-group-lg">
 {{--                                    <input type="text" id="" class="form-control" value="" placeholder="Incidencia *" name="incidencia">--}}
-                                    <select id="s_incidencia" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="incidencia" onchange="f_otros()">
+                                    <select id="s_incidencia" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="incidencia" required onchange="f_otros()">
                                         <option selected value>Seleccione Incidencia</option>
                                         @foreach ($incidencias as $incidencia)
                                             <option value="{{$incidencia->nombre}}">{{$incidencia->nombre}}</option>
@@ -104,6 +104,7 @@
                                 <div class="d-flex justify-content-end mt-3">
                                     <button class="btn btn-success btn-lg">Generar Ticket</button>
                                 </div>
+                                    <a href="{{route('helpdesk')}}" class="btn btn-secondary" >Cancelar</a>
                                 </form>
                             </div>
                         </div>

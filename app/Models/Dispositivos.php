@@ -13,7 +13,7 @@ class Dispositivos extends Model
         return $this->hasMany(Ticket::class);
     }
     public function oficina(){
-        return $this->hasMany(Oficina::class);
+        return $this->belongsTo(Oficina::class);
     }
 }
 
