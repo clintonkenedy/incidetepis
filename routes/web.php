@@ -32,13 +32,11 @@ Route::get('/helpdesk', [TicketController::class, 'index'])->name('helpdesk');
 Route::get('/pc', [DispositivosController::class, 'index'])->name('pc');
 
 Route::get('/verificacion', [TicketController::class, 'passOfi'])->name('ticket.passOfi');
-Route::get('/incidencia', [TicketController::class, 'incidencia'])->name('ticket.incidencia');
 
 Route::post('/nuevoticket', [TicketController::class, 'store'])->name('ticket.store');
 
 Route::get('/prueba', [TicketController::class, 'create'])->name('prueba');
 
-Route::resource('dispositivos',DispositivosController::class);
 
 Route::group(['middleware'=>['auth']],function(){
     Route::view('dashboard','dashboard')->name('dashboard');

@@ -35,7 +35,7 @@
                             @enderror
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="apellido_materno" class="form-label">
+                                <label for="pass" class="form-label">
                                     Contraseña:
                                     <span style="color: red;">*</span></label>
                                 {{-- {!! Form::text('pass',$oficina->password,array('class'=>'form-control '.($errors->has('fecha') ? 'is-invalid':''))) !!} --}}
@@ -61,7 +61,6 @@
                                     <option value="0" >Activo</option>
                                     <option value="1" selected>Inactivo</option>
                                     @endif
-
                                 </select>
                             </div>
                         </div>

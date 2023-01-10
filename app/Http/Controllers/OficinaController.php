@@ -60,7 +60,7 @@ class OficinaController extends Controller
 
 
         $oficina->save();
-
+        //return response()->json($nombre_ofi);
         return redirect()->route('oficinas.index');
     }
 
