@@ -40,35 +40,21 @@
                     @elseif ($dispositivo->estado==="Funcional")
                         <td><span class="badge bg-warning" > Funcional</span></td>
                     @else
-                        <td><span class="badge bg-warning" > Suspendido </span></td>
+                        <td><span class="badge bg-danger" > Suspendido </span></td>
                     @endif
                     @if ($dispositivo->condicion==="Nuevo")
                         <td><span class="badge bg-success" > Nuevo </span></td>
                     @elseif ($dispositivo->condicion==="Regular")
                         <td><span class="badge bg-warning" > Regular </span></td>
                     @elseif ($dispositivo->condicion==="Malo")
-                        <td><span class="badge bg-warning" > Malo </span></td>
+                        <td><span class="badge bg-danger" > Malo </span></td>
                     @else
-                        <td><span class="badge bg-warning" > Chatarra</span></td>
+                        <td><span class="badge bg-danger" > Chatarra</span></td>
                     @endif
                     <td> {{$dispositivo->posicion}} </td>
                     <td> {{$dispositivo->observacion}} </td>
 
-                    @if ($dispositivo->oficina_id==="1")
-                        <td><span class="badge bg-success" > LABORATORIO1 </span></td>
-                    @elseif ($dispositivo->condicion==="2")
-                        <td><span class="badge bg-warning" > LABORATORIO2 </span></td>
-                    @elseif ($dispositivo->condicion==="3")
-                        <td><span class="badge bg-warning" > LABORATORIO3 </span></td>
-                    @elseif ($dispositivo->condicion==="4")
-                        <td><span class="badge bg-warning" > LABORATORIO4 </span></td>
-                    @elseif ($dispositivo->condicion==="5")
-                        <td><span class="badge bg-warning" > LABORATORIO5 </span></td>
-                    @elseif ($dispositivo->condicion==="6")
-                        <td><span class="badge bg-warning" > LABORATORIO6 </span></td>
-                    @else
-                        <td><span class="badge bg-warning" > LABORATORIO7</span></td>
-                    @endif
+                        <td><span class="badge bg-success" > LABORATORIO {{$dispositivo->oficina_id}} </span></td>
 
                     <td>
                         <a href=" {{ route('dispositivos.edit', $dispositivo) }} " class="btn btn-primary">Editar</a>
