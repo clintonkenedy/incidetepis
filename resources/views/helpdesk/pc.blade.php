@@ -147,7 +147,7 @@
                                             <center>
                                                 <h5 class="card-title">{{$d->id}}</h5>
                                                 @if($d->estado!='Funcional')
-                                                    <p>Incidencia Reportada</p>
+                                                    <p>{{$d->tickets->last()->incidencia}}</p>
                                                 @else
                                                     <button type="button" onclick="enviar2(this,{{$d->id}})" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                                         Incidencia

@@ -5,7 +5,7 @@ use App\Http\Controllers\TicketController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\OficinaController;
 use App\Http\Controllers\RolController;
-use App\Http\Controllers\DispositivosController;
+use App\Http\Controllers\DispositivoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,7 +29,7 @@ Auth::routes();
 // Route::resource('tickets',TicketController::class);
 
 Route::get('/helpdesk', [TicketController::class, 'index'])->name('helpdesk');
-Route::get('/pc', [DispositivosController::class, 'index'])->name('pc');
+Route::get('/pc', [DispositivoController::class, 'index'])->name('pc');
 
 Route::get('/verificacion', [TicketController::class, 'passOfi'])->name('ticket.passOfi');
 Route::get('/incidencia', [TicketController::class, 'incidencia'])->name('ticket.incidencia');
@@ -39,7 +39,7 @@ Route::post('/nuevoticket', [TicketController::class, 'store'])->name('ticket.st
 Route::get('/prueba', [TicketController::class, 'create'])->name('prueba');
 
 /*Route::resource('dispositivos',DispositivosController::class);*/
-Route::resource('dispositivos', DispositivosController::class)->names('dispositivos');
+Route::resource('dispositivos', DispositivoController::class)->names('dispositivos');
 
 
 Route::group(['middleware'=>['auth']],function(){

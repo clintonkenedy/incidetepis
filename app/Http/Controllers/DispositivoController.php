@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Dispositivos;
+use App\Models\Dispositivo;
+use Illuminate\Http\Request;
 use App\Models\Incidencia;
 use App\Models\Oficina;
-use Illuminate\Http\Request;
+use App\Models\Ticket;
 
-class DispositivosController extends Controller
+class DispositivoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +18,7 @@ class DispositivosController extends Controller
     public function index()
     {
         //
-        $dispositivos= Dispositivos::all();
+        $dispositivos= Dispositivo::all();
         return view('dispositivos.index',compact('dispositivos'));
     }
 
@@ -30,6 +31,7 @@ class DispositivosController extends Controller
     {
         //
         return view('dispositivos.create');
+
     }
 
     /**
@@ -60,7 +62,7 @@ class DispositivosController extends Controller
         $input = $request->all();
         $nombre_ofi = $request->input('oficina');
         $pass = $request->input('pass');
-        
+
 
         $codpatri= $request->input('codpatri');
         $descripcion=$request->input('descripcion');
@@ -76,7 +78,7 @@ class DispositivosController extends Controller
 
         // dd($pass);
 
-        $dipositi = new Dispositivos();
+        $dipositi = new Dispositivo();
 
         $dipositi->codpatrominal = $codpatri;
         $dipositi->descripcion = $descripcion;
@@ -97,18 +99,17 @@ class DispositivosController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Dispositivos  $dispositivos
+     * @param  \App\Models\Dispositivo  $dispositivo
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
-
         $oficinas = Oficina::all();
         $of = $id;
-        $dispositivos= Dispositivos::where('oficina_id',$id)->get();
+        $dispositivos= Dispositivo::where('oficina_id',$id)->get();
         $incidencias = Incidencia::all();
-        //dd($oficinas[0]->dispositivos);
+        //$t= Dispositivo::all();
+        //dd($dispositivos[0]->tickets[0]);
         //dd($of);
         return view('helpdesk.pc',compact('dispositivos','of', 'oficinas','incidencias'));
     }
@@ -116,13 +117,13 @@ class DispositivosController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Dispositivos  $dispositivos
+     * @param  \App\Models\Dispositivo  $dispositivo
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         //
-        $dispositivos = Dispositivos::find($id);
+        $dispositivos = Dispositivo::find($id);
         // dd($evento);
         return view('dispositivos.edit',compact('dispositivos'));
     }
@@ -131,13 +132,13 @@ class DispositivosController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Dispositivos  $dispositivos
+     * @param  \App\Models\Dispositivo  $dispositivo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request ,$id)
+    public function update(Request $request, $id)
     {
         //
-        $evento = Dispositivos::find($id);
+        $evento = Dispositivo::find($id);
 
         $evento->codpatrominal = $request->input('Codpatrimonial');
         $evento->descripcion = $request->input('Descripción');
@@ -159,10 +160,10 @@ class DispositivosController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Dispositivos  $dispositivos
+     * @param  \App\Models\Dispositivo  $dispositivo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Dispositivos $dispositivos)
+    public function destroy(Dispositivo $dispositivo)
     {
         //
     }
