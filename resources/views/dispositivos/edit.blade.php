@@ -111,14 +111,22 @@
                                         <option value="Incidencia" selected>Incidencia</option>
                                         <option value="Funcional" >Funcional</option>
                                         <option value="Suspendido" >Suspendido</option>
+                                        <option value="Inactivo" >Inactivo</option>
                                     @elseif($dispositivos->estado == "Funcional")
                                         <option value="Funcional" selected>Funcional</option>
                                         <option value="Incidencia" >Incidencia</option>
                                         <option value="Suspendido" >Suspendido</option>
-                                    @else
+                                        <option value="Inactivo" >Inactivo</option>
+                                    @elseif($dispositivos->estado == "Inactivo")
+                                        <option value="Inactivo" selected>Inactivo</option>
+                                        <option value="Incidencia" >Incidencia</option>
+                                        <option value="Suspendido" >Suspendido</option>
+                                        <option value="Funcional" >Funcional</option>
+                                    @else 
                                         <option value="Suspendido" selected>Suspendido</option>
                                         <option value="Incidencia" >Incidencia</option>
                                         <option value="Funcional" >Funcional</option>
+                                        <option value="Inactivo" >Inactivo</option>
                                     @endif
 
                                 </select>

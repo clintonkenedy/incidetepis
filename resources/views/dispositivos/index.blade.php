@@ -36,11 +36,13 @@
                     <td> {{$dispositivo->serie}} </td>
                     <td> {{$dispositivo->color}} </td>
                     @if ($dispositivo->estado==="Incidencia")
-                        <td><span class="badge bg-success" > Incidencia </span></td>
+                        <td><span class="badge bg-warning" > Incidencia </span></td>
                     @elseif ($dispositivo->estado==="Funcional")
-                        <td><span class="badge bg-warning" > Funcional</span></td>
-                    @else
+                        <td><span class="badge bg-success" > Funcional</span></td>
+                    @elseif ($dispositivo->estado==="Suspendido")
                         <td><span class="badge bg-danger" > Suspendido </span></td>
+                    @else 
+                        <td><span class="badge bg-dark" > Inactivo </span></td>
                     @endif
                     @if ($dispositivo->condicion==="Nuevo")
                         <td><span class="badge bg-success" > Nuevo </span></td>

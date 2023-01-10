@@ -50,7 +50,7 @@ class TicketController extends Controller
     }
     public function ticketsCamino()
     {
-        $tickets = Ticket::where('estado', 'En camino')->orderBy("updated_at", "DESC")->get();
+        $tickets = Ticket::where('estado', 'Inactivo')->orderBy("updated_at", "DESC")->get();
         return view('tickets.camino', compact('tickets'));
     }
 

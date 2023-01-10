@@ -351,11 +351,11 @@ return [
             // 'can' => 'Ver-Oficinas',
         ],
         ['header' => 'ESTADOS'],
-        //[
-        //    'text'       => 'En camino',
-         //   'icon_color' => 'blue',
-        //    'url'        => '/tickets/caminos',
-        //],
+        [
+            'text'       => 'Inactivo',
+            'icon_color' => 'blue',
+            'url'        => '/tickets/caminos',
+        ],
         [
             'text'       => 'Solucionado',
             'icon_color' => 'green',
@@ -367,7 +367,7 @@ return [
             'url'        => '/tickets/pendientes',
         ],
         [
-            'text'       => 'No Funcional',
+            'text'       => 'Suspendido',
             'icon_color' => 'red',
             'url'        => '/tickets/cancelados',
         ],
