@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Dispositivos;
+use App\Models\Dispositivo;
 use App\Models\Incidencia;
 use App\Models\Ticket;
 use App\Models\Oficina;
@@ -177,7 +177,7 @@ class TicketController extends Controller
             $ticket->dispositivo_id = $request->input('pc');
 //            dd($request->all());
             $ticket->save();
-            $dispositivo = Dispositivos::find($request->input('pc'));
+            $dispositivo = Dispositivo::find($request->input('pc'));
             $dispositivo->estado = 'Incidencia';
             $dispositivo->save();
             //dd($dispositivo);
