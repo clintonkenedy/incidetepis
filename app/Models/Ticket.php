@@ -21,7 +21,7 @@ class Ticket extends Model
     }
     //una amuchos
     public function dispositivo(){
-        return $this->belongsTo(Dispositivos::class);
+        return $this->belongsTo(Dispositivo::class);
     }
 
     //muchos a 1

@@ -12,6 +12,6 @@ class Oficina extends Model
         return $this->hasMany(Ticket::class);
     }
     public function dispositivos(){
-        return $this->hasMany(Dispositivos::class);
+        return $this->hasMany(Dispositivo::class);
     }
 }
