@@ -145,7 +145,7 @@
                                         </div>
                                         <div class="card-body">
                                             <center>
-                                                <h5 class="card-title">{{$d->id}}</h5>
+                                                <h5 class="card-title">{{$d->posicion}}</h5>
                                                 @if($d->estado!='Funcional')
                                                     <p>{{$d->tickets->last()->incidencia}}</p>
                                                 @else

@@ -21,7 +21,7 @@ class CreateDispositivosTable extends Migration
             $table->string('marca',15)->nullable();
             $table->string('serie',12)->nullable();
             $table->string('color',9)->nullable();
-            $table->enum('estado',['Incidencia','Funcional','Suspendido'])->default('Funcional');
+            $table->enum('estado',['Incidencia','Funcional','Suspendido','Inactivo'])->default('Funcional');
             $table->enum('condicion',['Nuevo','Regular','Malo','Chatarra'])->default('Regular');
             $table->string('posicion')->nullable();
             $table->string('observacion')->nullable();

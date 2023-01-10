@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-md-6 offset-md-3 mt-4">
                 <div class="card border-dark">
-                    <h4 class="card-header border-dark bg bg-primary">EDITAR TICKET</h4>
+                    <h4 class="card-header border-dark bg bg-primary">EDITAR ESTADO</h4>
                     <div class="card-body">
 {{--                        {!! Form::open(array('route'=>['teatro.update', $evento],'method'=>'POST','class'=>'mt-2')) !!}--}}
 {{--                        @method('PUT')--}}
@@ -56,6 +56,7 @@
                                     <option value="Pendiente">Pendiente</option>
                                     <option value="Cancelado">Cancelado</option>
                                     <option value="Solucionado">Solucionado</option>
+                                    <option value="Inactivo">Inactivo</option>
                                 </select>
                             </div>
 
