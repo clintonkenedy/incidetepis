@@ -9,7 +9,7 @@
 @stop
 
 @section('content')
-    {{-- <a href=" {{ route('oficinas.create') }} " class="btn btn-success mb-3">NUEVA OFICINA</a> --}}
+    <a href=" {{ route('dispositivos.create') }} " class="btn btn-success mb-3">NUEVO DISPOSITIVO</a>
     <div class="table-responsive">
         <table id="dispositivos" class="table table-striped mt-2">
             <thead>

@@ -10,7 +10,7 @@
         <div class="col-md-8 col-lg-4 col-xl-4 offset-xl-1">
             <div class="card text-white" style="background-color: #0093FF">
                 <div class="card-body">
-                    <h1 class="text-center mb-4">Iniciar Sesión</h1>
+                    <h1 class="text-center mb-4">Login HelpDesk</h1>
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
@@ -71,7 +71,7 @@
 class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
 <!-- Copyright -->
 <div class="text-white mb-3 mb-md-0">
-    © Copyright 2023. Ingenieria de Sistemas.  Universidad Nacional del Altiplano.
+    © Copyright 2022. Oficina de Tecnología e Informática.  Municipalidad Provincial de Puno.
 </div>
 <!-- Copyright -->
 

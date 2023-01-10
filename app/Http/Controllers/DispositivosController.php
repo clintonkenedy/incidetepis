@@ -29,7 +29,7 @@ class DispositivosController extends Controller
     public function create()
     {
         //
-        return view('dispoditivos.create');
+        return view('dispositivos.create');
     }
 
     /**
@@ -41,7 +41,57 @@ class DispositivosController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate(
+            [
+                'codpatri'=> 'required',
+                'descripcion'=> 'required',
+                'modelo'=> 'required',
+                'marca'=> 'required',
+                'serie'=> 'required',
+                'color'=> 'required',
+                'estado'=> 'required',
+                'condicion'=> 'required',
+                'posicion'=> 'required',
+                'observacion'=> 'required',
+                'id_ofici'=> 'required',
+            ]
+        );
 
+        $input = $request->all();
+        $nombre_ofi = $request->input('oficina');
+        $pass = $request->input('pass');
+        
+
+        $codpatri= $request->input('codpatri');
+        $descripcion=$request->input('descripcion');
+        $modelo=$request->input('modelo');
+        $marca=$request->input('marca');
+        $serie=$request->input('serie');
+        $color=$request->input('color');
+        $estado = $request->input('estado');
+        $condicion=$request->input('condicion');
+        $posicion=$request->input('posicion');
+        $observacion=$request->input('observacion');
+        $id_ofici=$request->input('id_ofici');
+
+        // dd($pass);
+
+        $dipositi = new Dispositivos();
+
+        $dipositi->codpatrominal = $codpatri;
+        $dipositi->descripcion = $descripcion;
+        $dipositi->modelo = $modelo;
+        $dipositi->marca = $marca;
+        $dipositi->serie = $serie;
+        $dipositi->color = $color;
+        $dipositi->estado = $estado;
+        $dipositi->condicion = $condicion;
+        $dipositi->posicion = $posicion;
+        $dipositi->observacion = $observacion;
+        $dipositi->oficina_id = $id_ofici;
+
+        $dipositi->save();
+        return redirect()->route('dispositivos.index');
     }
 
     /**

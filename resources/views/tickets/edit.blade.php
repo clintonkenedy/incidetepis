@@ -4,7 +4,7 @@
 
 @section('content_header')
     <center>
-        <h1>TICKETS</h1>
+        <h1>Estado de dispositivo</h1>
     </center>
 @stop
 
@@ -54,7 +54,6 @@
                                 </label>
                                 <select id="" class="form-control" name="estado">
                                     <option value="Pendiente">Pendiente</option>
-                                    <option value="En camino">En camino</option>
                                     <option value="Cancelado">Cancelado</option>
                                     <option value="Solucionado">Solucionado</option>
                                 </select>
