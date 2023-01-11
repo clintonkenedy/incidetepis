@@ -64,7 +64,7 @@
                                     <div class="col-md-12 input-group-md">
                                         <label for="exampleFormControlInput1" class="form-label">Usuario:</label>
 
-                                        <input type="text" id="" class="form-control" value="clinton"  name="" disabled>
+                                        <input type="text" id="" class="form-control" value="Docente"  name="" disabled>
 
                                     </div>
                                 <div class="col-md-12 mb-3 mt-4">

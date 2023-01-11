@@ -352,11 +352,6 @@ return [
         ],
         ['header' => 'ESTADOS'],
         [
-            'text'       => 'Inactivo',
-            'icon_color' => 'blue',
-            'url'        => '/tickets/caminos',
-        ],
-        [
             'text'       => 'Solucionado',
             'icon_color' => 'green',
             'url'        => '/tickets/solucionados',
@@ -370,6 +365,11 @@ return [
             'text'       => 'Suspendido',
             'icon_color' => 'red',
             'url'        => '/tickets/cancelados',
+        ],
+        [
+            'text'       => 'Inactivo',
+            'icon_color' => 'black',
+            'url'        => '/tickets/caminos',
         ],
     ],
 
