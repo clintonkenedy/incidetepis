@@ -245,6 +245,9 @@ class TicketController extends Controller
         else if($request->input('estado')=='Cancelado'){
             $ticket->dispositivo->estado='Suspendido';
         }
+        else if($request->input('estado')=='Inactivo'){
+            $ticket->dispositivo->estado='Inactivo';
+        }
         $ticket->dispositivo->save();
 
 

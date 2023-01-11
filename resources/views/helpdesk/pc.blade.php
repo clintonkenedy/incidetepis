@@ -138,6 +138,8 @@
                                                     <span class="badge bg-warning ">{{$d->estado}}</span>
                                                 @elseif($d->estado=='Suspendido')
                                                     <span class="badge bg-danger ">{{$d->estado}}</span>
+                                                @elseif($d->estado=='Inactivo')
+                                                    <span class="badge bg-dark ">{{$d->estado}}</span>
                                                 @endif
 
                                             </h5>
