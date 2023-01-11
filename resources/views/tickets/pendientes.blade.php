@@ -30,7 +30,7 @@
                     <td>{{$ticket->incidencia}}</td>
                     <td>{{$ticket->oficina->nombre_oficina}}</td>
                     <td>{{$ticket->dispositivo->descripcion}}</td>
-                    <td><h5><span class="badge bg-warning"> {{$ticket->estado}} </span></h5></td>
+                    <td><h5><span class="badge bg-warning"> Incidencia </span></h5></td>
                     <td>
                         <a href="{{route('tickets.edit', $ticket->id)}}" class="btn btn-primary">Editar</a>
                         {{---<form action="{{route('tickets.destroy', $ticket->id)}}" method="post" style="display:inline">

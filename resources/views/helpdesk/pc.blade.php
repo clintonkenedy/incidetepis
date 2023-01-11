@@ -96,7 +96,8 @@
                                             </div>
                                             <div class="col">
                                                 <div class="form-floating mb-3">
-                                                    <input type="text" readonly class="form-control" name="pc" id="pc" >
+                                                    <input type="text" readonly class="form-control" name="pc1" id="pc1" >
+                                                    <input type="text" readonly class="form-control" name="pc" id="pc" hidden>
                                                     <label for="pc">Computadora:</label>
                                                 </div>
                                             </div>
@@ -151,13 +152,35 @@
                                             </h5>
 
                                         </div>
+                                        @if($d->estado=='Funcional')
+                                            @php
+                                                $color="198754"
+                                            @endphp
+                                        @elseif($d->estado=='Incidencia')
+                                            @php
+                                                $color="ffc107"
+                                            @endphp
+                                        @elseif($d->estado=='Suspendido')
+                                            @php
+                                            $color="dc3545"
+                                            @endphp
+                                        @elseif($d->estado=='Inactivo')
+                                            @php
+                                            $color="a7a1a1"
+                                            @endphp
+                                        @endif
                                         <div class="card-body">
                                             <center>
+                                            <svg  style="fill:#{{$color}}; height: 50px;" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                                viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                                                    <g><path id="com" d="M388,101v40h124v-40H388z M0,151v228h368V151H0z M388,151v40h124v-40H388z M24,175h320v180H24V175z
+                                                    M388,201v40h124v-40H388z M388,251v160h124V251H388z M435,341h30v5v25h-30v-25V341z M104,387l-16,16v8h192v-8l-16-16H104z"/>
+                                                    </g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
                                                 <h5 class="card-title">{{$d->posicion}}</h5>
                                                 @if($d->estado!='Funcional')
                                                     <p>{{$d->tickets->last()->incidencia}}</p>
                                                 @else
-                                                    <button type="button" onclick="enviar2(this,{{$d->posicion}})" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                    <button type="button" onclick="enviar2(this,{{$d->id}},{{$d->posicion}})" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                                         Incidencia
                                                     </button>
                                                 @endif
@@ -187,6 +210,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 
 <script>
+    let pc1;
     let oficina = {{$of}};
     let pc;
     document.getElementById('oficina').value = oficina;
@@ -210,11 +234,13 @@
 
 
     //window.location.href = "/dispositivos/2";
-    function enviar2(e,i){
+    function enviar2(e,i,d){
         console.log("hola2");
         console.log(i);
         pc = i;
+        pc1=d;
         document.getElementById('pc').value = pc;
+        document.getElementById('pc1').value = pc1;
 
         console.log(inci);
         //ss$('#exampleModal').modal({ show:true });
