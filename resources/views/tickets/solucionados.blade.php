@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Tickets Solucionados')
+@section('title', 'Dispositivos Solucionados')
 
 @section('content_header')
     <center>

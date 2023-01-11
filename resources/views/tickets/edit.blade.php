@@ -53,8 +53,8 @@
                                     <span style="color: red;">*</span>
                                 </label>
                                 <select id="" class="form-control" name="estado">
-                                    <option value="Pendiente">Pendiente</option>
-                                    <option value="Suspendido">Cancelado</option>
+                                    <option value="Pendiente">Incidencia</option>
+                                    <option value="Suspendido">Suspendido</option>
                                     <option value="Solucionado">Solucionado</option>
                                     <option value="Inactivo">Inactivo</option>
                                 </select>

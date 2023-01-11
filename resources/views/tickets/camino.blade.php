@@ -1,10 +1,10 @@
 @extends('adminlte::page')
 
-@section('title', 'Tickets Cancelados')
+@section('title', 'Dispositivos Inactivos')
 
 @section('content_header')
     <center>
-        <h1>TICKETS EN CAMINO</h1>
+        <h1>DISPOSITIVOS INACTIVOS</h1>
     </center>
 @stop
 
@@ -52,7 +52,11 @@
     <script>
         $(document).ready(function () {
             $('#caminos').DataTable({
-                'order': false,
+                dom: 'Bfrtip',
+                buttons: [
+                    'print'
+                ],
+                "order": false,
             });
         });
     </script>

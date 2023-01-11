@@ -21,22 +21,22 @@
 
     <div class="container-fluid">
         <div class="row bg bg-dark text-white">
-            <a class="navbar-brand m-2">UNA PUNO</a>
+            <a class="navbar-brand m-2">Universidad Nacional del Altiplano</a>
         </div>
-        <div class="row text-white" style="background-color: #1e6584">
+        <div class="row text-white" style="background-color: #020659">
             <div class="col-md-12 pt-5">
                 <center>
-                    <h1> <b>Universidad Nacional del Altiplano</b></h1>
+                    <h1> <b>Sistema de Gestión de Incidencias</b></h1>
                     <hr/>
-                    <h5>Ingenieria de Sistemas</h5>
-                    <p>Teléfono: 051 368591</p>
+                    <h3>Facultad de Ingenieria Mecánica Eléctrica, Electronica y Sistemas  </h3>
+                    <h5>Escuela Profesional de Ingenieria de Sistemas</h5>
                 </center>
             </div>
         </div>
-        <div class="row" style="background-color: #43baca48">
+        <div class="row" style="background-color: #D9D8D7">
             <div class="col-md-12 m-3">
                 <center>
-                    <h3 class=""> <i class="bi bi-phone-fill"></i>   Registrar Incidencia</h3>
+                    <h3 class=""> <i class="bi bi-phone-fill"></i>   REGISTRAR INCIDENCIA</h3>
                 </center>
             </div>
         </div>
@@ -55,7 +55,6 @@
                             <div class="row m-3">
                                 <div class="col-12">
                                     <center>
-                                        <h3>Registro de Incidencia</h3>
                                         <h3>Login</h3>
                                     </center>
                                 </div>
@@ -81,7 +80,7 @@
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-end mt-3">
-                                    <button type="submit" class="btn btn-success btn-lg">Inciar Sesion</button>
+                                    <button type="submit" class="btn btn-primary btn-lg">Inciar Sesion</button>
                                 </div>
                                 </form>
                             </div>

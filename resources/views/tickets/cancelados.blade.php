@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Tickets Cancelados')
+@section('title', 'Dispositivos Suspendidos')
 
 @section('content_header')
     <center>
@@ -52,7 +52,11 @@
     <script>
         $(document).ready(function () {
             $('#cancelados').DataTable({
-                'order': false,
+                dom: 'Bfrtip',
+                buttons: [
+                    'print'
+                ],
+                "order": false,
             });
         });
     </script>

@@ -12,13 +12,19 @@
 <body>
 <div class="container-fluid">
     <div class="row bg bg-dark text-white">
-        <a class="navbar-brand m-2">UNA PUNO</a>
+        <a class="navbar-brand m-2">Universidad Nacional del Altiplano</a>
     </div>
-
-    <div class="row" style="background-color: #43baca48">
+    <div class="row text-white" style="background-color: #020659">
+            <div class="col-md-12 pt-5">
+                <center>
+                    <h1> <b>Sistema de Gestión de Incidencias</b></h1>
+                </center>
+            </div>
+    </div>
+    <div class="row" style="background-color: #D9D8D7">
         <div class="col-md-12 m-3">
             <center>
-                <h3 class=""> <i class="bi bi-phone-fill"></i>  Registrar Incidencia</h3>
+                <h3 class=""> <i class="bi bi-pc-display"></i>  Registrar Incidencia</h3>
             </center>
         </div>
     </div>
@@ -47,7 +53,7 @@
 
                                     </div>
                                     <div class=" col-md-2 mt-4">
-                                        <a href="{{route('helpdesk')}}" class="btn btn-secondary" >Cancelar</a>
+                                        <a href="{{route('helpdesk')}}" class="btn btn-danger" >Cancelar</a>
                                     </div>
                                 </div>
 
