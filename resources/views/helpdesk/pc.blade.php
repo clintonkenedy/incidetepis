@@ -16,7 +16,7 @@
     </div>
     <div class="row text-white" style="background-color: #020659">
             <div class="col-md-12 pt-5">
-                <center>
+                <center>    
                     <h1> <b>Sistema de Gestión de Incidencias</b></h1>
                 </center>
             </div>
@@ -79,7 +79,7 @@
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Registrar Incidencia</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <form action="{{route('ticket.store')}}" method="post" id="nuevoticket1">
@@ -117,7 +117,7 @@
                                                 {{--                                    <input type="hidden" name="oficina" value="{{$oficina}}">--}}
                                             </div>
                                            {{-- <div class="d-flex justify-content-end mt-3">
-                                                <button class="btn btn-success ">Generar Ticket</button>
+                                                <button class="btn btn-success ">Registrar Incidencia</button>
                                             </div>--}}
 
 
@@ -125,7 +125,7 @@
                                     <div class="modal-footer">
 
                                         <button type="button" onclick="limpiar()" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                        <button class="btn btn-success ">Generar Ticket</button>
+                                        <button class="btn btn-success ">Registrar Incidencia</button>
                                     </div>
                                     </form>
                                 </div>
@@ -157,12 +157,12 @@
                                                 @if($d->estado!='Funcional')
                                                     <p>{{$d->tickets->last()->incidencia}}</p>
                                                 @else
-                                                    <button type="button" onclick="enviar2(this,{{$d->id}})" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                    <button type="button" onclick="enviar2(this,{{$d->posicion}})" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                                         Incidencia
                                                     </button>
                                                 @endif
 
-{{--                                                <a value="{{$d->id}}" onclick="enviar2(this,{{$d->id}})" href="#" data-bs-toggle="modal" ata-bs-target="#exampleModal" class="btn btn-primary">incidencia</a>--}}
+{{--                                                <a value="{{$d->id}}" onclick="enviar2(this,{{$d->posicion}})" href="#" data-bs-toggle="modal" ata-bs-target="#exampleModal" class="btn btn-primary">incidencia</a>--}}
 
                                             </center>
 
