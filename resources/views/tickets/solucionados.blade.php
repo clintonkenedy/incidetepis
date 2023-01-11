@@ -31,11 +31,11 @@
                     <td><h5><span class="badge bg-success"> {{$ticket->estado}} </span></h5></td>
                     <td>
                         <a href="{{route('tickets.edit', $ticket->id)}}" class="btn btn-primary">Editar</a>
-                        <form action="{{route('tickets.destroy', $ticket->id)}}" method="post" style="display:inline">
+                        {{--<form action="{{route('tickets.destroy', $ticket->id)}}" method="post" style="display:inline">
                             @method('DELETE')
                             @csrf
                             <button class="btn btn-danger">Borrar</button>
-                        </form>
+                        </form>--}}
                     </td>
                 </tr>
             @endforeach
